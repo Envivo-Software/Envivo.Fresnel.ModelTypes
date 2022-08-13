@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fresnel.DomainTypes</name>
+    </assembly>
+    <members>
+        <member name="T:Envivo.Fresnel.ModelTypes.AggregateLock">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.AggregateLock.AggregateRoot">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.AggregateLock.LockedBy">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.AggregateLock.LockedUntil">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Audit">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Audit.DomainObject">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Audit.CreatedBy">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Audit.CreatedAt">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Audit.UpdatedBy">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Audit.UpdatedAt">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Audit.DeletedBy">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Audit.DeletedAt">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.BaseAggregateRoot">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.BaseDomainEvent">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.BaseDomainEvent.OccurredAt">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.BaseDomainObject">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.BaseDomainObject.Id">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.BaseDomainObject.Version">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.BaseDomainObject.Audit">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.BaseDomainObject.Set``1(``0@,``0,System.String)">
+            <summary>
+            Helper method to set a property value and raise the PropertyChanged event
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="backingField"></param>
+            <param name="newValue"></param>
+            <param name="propertyName"></param>
+            <example>this.Set(ref _Name, value, "Name");
+            </example>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.BaseEntity">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.BaseValueObject">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Collection`1">
+            <summary>
+            A collection of Domain Objects
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Collection`1.Id">
+            <summary>
+            A unique identifier used to track this object
+            </summary>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Collection`1.OnInsertingItem(Envivo.Fresnel.ModelTypes.Interfaces.ICollectionChangeEventArgs{`0})">
+            <summary>
+            Raised just before an item is inserted/added to the Collection. Use the event arguments to cancel the operation.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Collection`1.OnRemovingItem(Envivo.Fresnel.ModelTypes.Interfaces.ICollectionChangeEventArgs{`0})">
+            <summary>
+            Raised just before an item is removed from the Collection. Use the event arguments to cancel the operation.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Collection`1.OnReplacingItem(Envivo.Fresnel.ModelTypes.Interfaces.ICollectionChangeEventArgs{`0})">
+            <summary>
+            Raised just before an item is set in the Collection. Use the event arguments to cancel the operation.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Collection`1.OnClearing(Envivo.Fresnel.ModelTypes.Interfaces.ICollectionChangeEventArgs{`0})">
+            <summary>
+            Raised just before the Collection is cleared. Use the event arguments to cancel the operation.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.CollectionChangeEventArgs`1">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.CollectionChangeEventArgs`1.Action">
+            <summary>
+            The underlying action that triggered this event
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.CollectionChangeEventArgs`1.Item">
+            <summary>
+            The item that is being added/removed from the Collection
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.CollectionChangeEventArgs`1.Index">
+            <summary>
+            The index of the item being added/removed from the Collection
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.CollectionChangeEventArgs`1.IsCancelled">
+            <summary>
+            Determines if the action should be cancelled
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IAggregateLock.AggregateRoot">
+            <summary>
+            Used to apply a pessimistic lock to an Aggregate Root
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IAggregateLock.LockedBy">
+            <summary>
+            The user that locked the Aggregate
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IAggregateLock.LockedUntil">
+            <summary>
+            The time when the lock should be released. Using an 'end time' should prevent rogue locks blocking usage indefinitely.
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IAggregateRoot">
+            <summary>
+            An Entity that groups closely related objects with complex associations. Aggregates Roots are used to
+            (1) Provide a access route for Domain Objects within the cluster
+            (2) Enforce rules/consistency for the entire cluster of objects
+            (3) Provide a suitable locking point for Domain Objects in a mult-user environment
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IApplicationService">
+            <summary>
+            A set of stateless operations that are exposed to external consumers (e.g. Web Services)
+            Application Services should not be confused with Domain Services or Infrastructure services
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IAudit">
+            <summary>
+            Used for recording basic audit information for a persisted Domain Object
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.ICollectionChangeEventArgs`1.Action">
+            <summary>
+            The underlying action that triggered this event
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.ICollectionChangeEventArgs`1.Item">
+            <summary>
+            The item that is being added/removed from the Collection
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.ICollectionChangeEventArgs`1.Index">
+            <summary>
+            The index of the item being added/removed from the Collection
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.ICollectionChangeEventArgs`1.IsCancelled">
+            <summary>
+            Determines if the action should be cancelled
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IConsistencyCheck`1">
+            <summary>
+            Applies checks against a Domain object, to ensure it is fit for persisting
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IDomainDependency">
+            <summary>
+            Any dependency defined within the Domain (Factories, ConsistencyChecks, Specifications, etc)
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IDomainEvent">
+            <summary>
+            Captures the state of an Entity (or Entities) at a point in time.
+            Each Domain Event is unique and should NOT be treated as a Value Object.
+            However, Domain Events should be immutable to avoid the risk of corruption.
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IDomainEvent.Id">
+            <summary>
+            The unique identifier for this Domain Event
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IDomainEvent.OccurredAt">
+            <summary>
+            The date/time when the Domain Event occurred
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IDomainObject">
+            <summary>
+            Any object within a Domain
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IDomainService">
+            <summary>
+            A set of stateless operations, whose behaviours cannot be contained within any Domain Object.
+            Domain Services should not be confused with Application/Web Services or Infrastructure services.
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IEntity">
+            <summary>
+            Any object within a Domain that has unique identity.
+            It may be necessary to override Equals() so that comparisons are made by Id.
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IEntity.Id">
+            <summary>
+            The unique identifier for this Entity
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IFactory`1">
+            <summary>
+            A set of stateless methods for creating complex Domain Objects of the given type.
+            Consider using Factories when object constructors start getting complicated.
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IListAdapter`1">
+            <summary>
+            Provides a wrapper for a generic list. Commonly used to wrap proxies generated by an ORM (e.g. Nhibernate)
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IListAdapter`1.InnerList">
+            <summary>
+            The original list that is being wrapped
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IPersistable">
+            <summary>
+            Any object that may be persisted to a database
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IPersistable.Id">
+            <summary>
+            The unique identifier for this Entity
+            </summary>
+        </member>
+        <member name="P:Envivo.Fresnel.ModelTypes.Interfaces.IPersistable.Version">
+            <summary>
+            Used for concurrency checks
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IPersistenceService">
+            <summary>
+            Used as an adapter to a persistence data store
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IQuerySpecification`1">
+            <summary>
+            Used to encapsulate queries that get executed against a data store
+            </summary>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IQuerySpecification`1.GetResults">
+            <summary>
+            Returns a set of results
+            </summary>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IQuerySpecification`2.GetResults(`0)">
+            <summary>
+            Returns a set of results
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IRepository`1">
+            <summary>
+            Used to load/save Aggregates of the given type to a Persistence Store.
+            Inherit and extend this interface to provide access to child objects.
+            </summary>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IRepository`1.GetAll">
+            <summary>
+            Returns all known Aggregate Roots of the given Type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IRepository`1.Load(System.Guid)">
+            <summary>
+            Loads and returns the Aggregate Root matching the given Id
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IRepository`1.Save(`0)">
+            <summary>
+            Saves the given Aggregate Root within a transaction, along with changes made to nested objects within the aggregate (cascading).
+            </summary>
+            <param name="aggregateRoot"></param>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IRepository`1.Save(Envivo.Fresnel.ModelTypes.Interfaces.IDomainObject[])">
+            <summary>
+            Saves the given list of Domain Objects within a transaction. Changes made to other objects within the Aggregate will now be persisted.
+            </summary>
+            <param name="domainObjects"></param>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IRepository`1.Delete(`0)">
+            <summary>
+            Deletes the given Aggregate Root
+            </summary>
+            <param name="aggregateRoot"></param>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IRepository`1.Lock(`0)">
+            <summary>
+            Locks the Aggregate Root, and prevents other users from changing it's contents
+            </summary>
+            <param name="aggregateRoot"></param>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IRepository`1.Unlock(`0)">
+            <summary>
+            Unlocks the Aggregate Root, and allows other users to change it's contents
+            </summary>
+            <param name="aggregateRoot"></param>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.ISpecification`1">
+            <summary>
+            Encapsulates a test to be made against a Domain Object
+            </summary>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.ISpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Returns NULL if this specification is met by the given Domain Object
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IValidatable">
+            <summary>
+            Used to validate Domain Objects
+            </summary>
+        </member>
+        <member name="M:Envivo.Fresnel.ModelTypes.Interfaces.IValidatable.IsValid">
+            <summary>
+            Returns TRUE if the Domain Object is in a valid state. The Error property provides details of actual problems.
+            </summary>
+        </member>
+        <member name="T:Envivo.Fresnel.ModelTypes.Interfaces.IValueObject">
+            <summary>
+            A object within a Domain that is described by it's characteristics, not identity.
+            Recommended to be immutable, but technical constraints (e.g. performance or memory constraints) may dictate otherwise
+            </summary>
+        </member>
+    </members>
+</doc>
