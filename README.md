@@ -1,7 +1,7 @@
 ### Fresnel ModelTypes
 Fresnel ModelTypes is a .NET library containing Interfaces and Classes for building DDD applications.
 
-This library is designed for use with the [**Fresnel Domain Model Explorer**](https://github.com/Envivo-Software/Fresnel.Sample.ShoppingProject) prototyping and modelling tool,
+This library is designed for use with the [**Fresnel Domain Model Explorer**](https://github.com/Envivo-Software/Envivo.Fresnel) prototyping and modelling tool,
 but may be used independently to create your own DDD class models.
 
 You can find usage examples in the following projects:
