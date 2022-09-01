@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿// SPDX-FileCopyrightText: Copyright (c) 2022 Envivo Software
+// SPDX-License-Identifier: Apache-2.0
+using System.ComponentModel;
 
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {

@@ -1,4 +1,6 @@
-﻿namespace Envivo.Fresnel.ModelTypes.Interfaces
+﻿// SPDX-FileCopyrightText: Copyright (c) 2022 Envivo Software
+// SPDX-License-Identifier: Apache-2.0
+namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
     /// <summary>
     /// A set of stateless operations that are exposed to external consumers (e.g. Web Services)

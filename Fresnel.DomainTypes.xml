@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: Copyright (c) 2022 Envivo Software
+SPDX-License-Identifier: Apache-2.0
+-->
 <doc>
     <assembly>
         <name>Fresnel.DomainTypes</name>
