@@ -51,6 +51,6 @@ namespace Envivo.Fresnel.ModelTypes
             };
         }
 
-        public T Result { get; private set; }
+        public T Result { get; protected set; }
     }
 }
