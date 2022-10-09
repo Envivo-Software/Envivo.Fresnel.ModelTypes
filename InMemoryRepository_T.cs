@@ -4,8 +4,7 @@ using Envivo.Fresnel.ModelTypes.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
+using System.Text.Json;
 
 namespace Envivo.Fresnel.ModelTypes
 {
@@ -19,8 +18,6 @@ namespace Envivo.Fresnel.ModelTypes
     {
         private readonly List<TAggregateRoot> _Items = new();
 
-        private Cloner<TAggregateRoot> _SimpleCloner = new();
-
         public InMemoryRepository()
         {
         }
@@ -32,12 +29,17 @@ namespace Envivo.Fresnel.ModelTypes
 
         public IQueryable<TAggregateRoot> GetAll()
         {
-            return _Items.AsQueryable();
+            var clones = CreateClone(_Items);
+            return clones.AsQueryable();
         }
 
         public TAggregateRoot? Load(Guid id)
         {
-            return _Items.FirstOrDefault(p => p.Id == id);
+            var match = _Items.FirstOrDefault(p => p.Id == id);
+            return
+                match == null ?
+                null :
+                CreateClone(match);
         }
 
         public int Save(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
@@ -61,8 +63,8 @@ namespace Envivo.Fresnel.ModelTypes
         {
             Delete(aggregateRoot);
 
-            var copy = _SimpleCloner.Clone(aggregateRoot);
-            _Items.Add(copy);
+            var clone = CreateClone(aggregateRoot);
+            _Items.Add(clone);
         }
 
         public void Delete(TAggregateRoot aggregateRoot)
@@ -85,40 +87,11 @@ namespace Envivo.Fresnel.ModelTypes
             // Not applicable
         }
 
-        private class Cloner<T>
+        private static T CreateClone<T>(T obj)
         {
-            private static Func<T, T> cloner = CreateCloner();
-
-            private static Func<T, T> CreateCloner()
-            {
-                var cloneMethod = new DynamicMethod("CloneImplementation", typeof(T), new Type[] { typeof(T) }, true);
-                var defaultCtor = typeof(T).GetConstructor(new Type[] { });
-
-                var generator = cloneMethod.GetILGenerator();
-
-                var loc1 = generator.DeclareLocal(typeof(T));
-
-                generator.Emit(OpCodes.Newobj, defaultCtor);
-                generator.Emit(OpCodes.Stloc, loc1);
-
-                foreach (var field in typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
-                {
-                    generator.Emit(OpCodes.Ldloc, loc1);
-                    generator.Emit(OpCodes.Ldarg_0);
-                    generator.Emit(OpCodes.Ldfld, field);
-                    generator.Emit(OpCodes.Stfld, field);
-                }
-
-                generator.Emit(OpCodes.Ldloc, loc1);
-                generator.Emit(OpCodes.Ret);
-
-                return ((Func<T, T>)cloneMethod.CreateDelegate(typeof(Func<T, T>)));
-            }
-
-            public T Clone(T myObject)
-            {
-                return cloner(myObject);
-            }
+            var json = JsonSerializer.Serialize(obj, typeof(T));
+            var clone = JsonSerializer.Deserialize<T>(json);
+            return clone;
         }
     }
 }
