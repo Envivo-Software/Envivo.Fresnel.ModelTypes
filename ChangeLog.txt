@@ -1,5 +1,9 @@
-1.0.1 
-	First public release
+1.1.1
+	Fix: InMemoryRepository now returns copies of objects, so that object modifications don't affect the original items
+	Fix: Assertion.Result can now be set by derived classes
 
 1.1.0
 	New: Added InMemoryRepository<TAggregateRoot>, to make it easier for Developers to create basic IRepositories
+
+1.0.1 
+	First public release
