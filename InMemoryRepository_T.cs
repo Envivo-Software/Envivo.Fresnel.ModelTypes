@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Envivo.Fresnel.ModelTypes
 {
@@ -89,7 +90,11 @@ namespace Envivo.Fresnel.ModelTypes
 
         private static T CreateClone<T>(T obj)
         {
-            var json = JsonSerializer.Serialize(obj, typeof(T));
+            var settings = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            };
+            var json = JsonSerializer.Serialize(obj, typeof(T), settings);
             var clone = JsonSerializer.Deserialize<T>(json);
             return clone;
         }
