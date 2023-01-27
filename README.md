@@ -21,4 +21,4 @@ Objects and Collections are designed to raise notifications, which could be hand
 
 If you're restricting from using base classes in your code model (or prefer hand-crafting your own)	, consider using the interfaces within this namespace.
 
-*Copyright 2022 Envivo Software*
+*Copyright 2022-2023 Envivo Software*
