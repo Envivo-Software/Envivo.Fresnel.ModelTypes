@@ -1,9 +1,22 @@
-1.1.1
-	Fix: InMemoryRepository now returns copies of objects, so that object modifications don't affect the original items
-	Fix: Assertion.Result can now be set by derived classes
+2022-11-05: v1.2.0
+🎁 New features:
+- Added IValueProvider, for use with DefaultValueAttribute
 
-1.1.0
-	New: Added InMemoryRepository<TAggregateRoot>, to make it easier for Developers to create basic IRepositories
+🐞 Fixes:
+- InMemoryRepository now handles circular references
 
-1.0.1 
+🎨 Improvements:
+- Code clean up
+
+💨 Other:
+- Updated copyright notices
+
+
+2022-11-05: v1.1.1
+🐞 Fixes:
+- InMemoryRepository now returns copies of objects, so that object modifications don't affect the original items
+- Assertion.Result can now be set by derived classes
+
+
+2022-09-01: v1.0.1 
 	First public release
