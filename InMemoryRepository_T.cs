@@ -17,7 +17,15 @@ namespace Envivo.Fresnel.ModelTypes
     public class InMemoryRepository<TAggregateRoot> : IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
-        private readonly List<TAggregateRoot> _Items = new();
+        private readonly Dictionary<Guid, string> _Items = new();
+
+        private readonly JsonSerializerOptions _JsonSerializerOptions = 
+            new()
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                IncludeFields = true,
+                WriteIndented = true,
+            };
 
         public InMemoryRepository()
         {
@@ -25,33 +33,45 @@ namespace Envivo.Fresnel.ModelTypes
 
         public InMemoryRepository(IEnumerable<TAggregateRoot> initialItems)
         {
-            _Items.AddRange(initialItems);
+            foreach (var obj in initialItems)
+            {
+                _Items[obj.Id] = JsonSerializer.Serialize(obj, _JsonSerializerOptions);
+            }
         }
 
         public IQueryable<TAggregateRoot> GetAll()
         {
-            var clones = CreateClone(_Items);
-            return clones.AsQueryable();
+            var results =
+                _Items.Values
+                .Select(o => JsonSerializer.Deserialize<TAggregateRoot>(o, _JsonSerializerOptions))
+                .ToList();
+            return results.AsQueryable();
         }
 
         public TAggregateRoot? Load(Guid id)
         {
-            var match = _Items.FirstOrDefault(p => p.Id == id);
+            var match = _Items.GetValueOrDefault(id);
             return
                 match == null ?
                 null :
-                CreateClone(match);
+                JsonSerializer.Deserialize<TAggregateRoot>(match, _JsonSerializerOptions);
         }
 
         public int Save(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
         {
-            var newAggregates = newObjects.OfType<TAggregateRoot>();
+            var newAggregates = 
+                newObjects
+                .OfType<TAggregateRoot>()
+                .ToList();
             foreach (var ar in newAggregates)
             {
                 Save(ar);
             }
 
-            var modifiedAggregates = modifiedObjects.OfType<TAggregateRoot>();
+            var modifiedAggregates = 
+                modifiedObjects.
+                OfType<TAggregateRoot>()
+                .ToList();
             foreach (var ar in modifiedAggregates)
             {
                 Save(ar);
@@ -62,19 +82,12 @@ namespace Envivo.Fresnel.ModelTypes
 
         private void Save(TAggregateRoot aggregateRoot)
         {
-            Delete(aggregateRoot);
-
-            var clone = CreateClone(aggregateRoot);
-            _Items.Add(clone);
+            _Items[aggregateRoot.Id] = JsonSerializer.Serialize(aggregateRoot, _JsonSerializerOptions);
         }
 
         public void Delete(TAggregateRoot aggregateRoot)
         {
-            var match = _Items.FirstOrDefault(p => p.Id == aggregateRoot.Id);
-            if (match != null)
-            {
-                _Items.Remove(match);
-            }
+            _Items.Remove(aggregateRoot.Id);
         }
 
         public IAggregateLock Lock(TAggregateRoot aggregateRoot)
@@ -86,17 +99,6 @@ namespace Envivo.Fresnel.ModelTypes
         public void Unlock(TAggregateRoot aggregateRoot)
         {
             // Not applicable
-        }
-
-        private static T CreateClone<T>(T obj)
-        {
-            var settings = new JsonSerializerOptions
-            {
-                ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            };
-            var json = JsonSerializer.Serialize(obj, typeof(T), settings);
-            var clone = JsonSerializer.Deserialize<T>(json);
-            return clone;
         }
     }
 }
