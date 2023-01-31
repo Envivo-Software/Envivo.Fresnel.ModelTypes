@@ -1,4 +1,4 @@
-2022-11-05: v1.2.0
+2023-01-31: v1.2.0
 🎁 New features:
 - Added IValueProvider, for use with DefaultValueAttribute
 
