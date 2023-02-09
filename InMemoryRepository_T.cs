@@ -17,9 +17,9 @@ namespace Envivo.Fresnel.ModelTypes
     public class InMemoryRepository<TAggregateRoot> : IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
-        private readonly Dictionary<Guid, string> _Items = new();
+        private readonly Dictionary<Guid, JsonEntry> _Items = new();
 
-        private readonly JsonSerializerOptions _JsonSerializerOptions = 
+        private readonly JsonSerializerOptions _JsonSerializerOptions =
             new()
             {
                 ReferenceHandler = ReferenceHandler.Preserve,
@@ -35,7 +35,7 @@ namespace Envivo.Fresnel.ModelTypes
         {
             foreach (var obj in initialItems)
             {
-                _Items[obj.Id] = JsonSerializer.Serialize(obj, _JsonSerializerOptions);
+                _Items[obj.Id] = CreateJsonEntry(obj);
             }
         }
 
@@ -43,7 +43,8 @@ namespace Envivo.Fresnel.ModelTypes
         {
             var results =
                 _Items.Values
-                .Select(o => JsonSerializer.Deserialize<TAggregateRoot>(o, _JsonSerializerOptions))
+                .Select(o => JsonSerializer.Deserialize(o.Json, o.Type, _JsonSerializerOptions))
+                .Cast<TAggregateRoot>()
                 .ToList();
             return results.AsQueryable();
         }
@@ -54,12 +55,12 @@ namespace Envivo.Fresnel.ModelTypes
             return
                 match == null ?
                 null :
-                JsonSerializer.Deserialize<TAggregateRoot>(match, _JsonSerializerOptions);
+                JsonSerializer.Deserialize(match.Json, match.Type, _JsonSerializerOptions) as TAggregateRoot;
         }
 
         public int Save(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
         {
-            var newAggregates = 
+            var newAggregates =
                 newObjects
                 .OfType<TAggregateRoot>()
                 .ToList();
@@ -68,7 +69,7 @@ namespace Envivo.Fresnel.ModelTypes
                 Save(ar);
             }
 
-            var modifiedAggregates = 
+            var modifiedAggregates =
                 modifiedObjects.
                 OfType<TAggregateRoot>()
                 .ToList();
@@ -82,7 +83,7 @@ namespace Envivo.Fresnel.ModelTypes
 
         private void Save(TAggregateRoot aggregateRoot)
         {
-            _Items[aggregateRoot.Id] = JsonSerializer.Serialize(aggregateRoot, _JsonSerializerOptions);
+            _Items[aggregateRoot.Id] = CreateJsonEntry(aggregateRoot);
         }
 
         public void Delete(TAggregateRoot aggregateRoot)
@@ -99,6 +100,25 @@ namespace Envivo.Fresnel.ModelTypes
         public void Unlock(TAggregateRoot aggregateRoot)
         {
             // Not applicable
+        }
+
+        private JsonEntry CreateJsonEntry(TAggregateRoot obj)
+        {
+            return new JsonEntry
+            {
+                Id = obj.Id,
+                Type = obj.GetType(),
+                Json = JsonSerializer.Serialize(obj, _JsonSerializerOptions)
+            };
+        }
+
+        private record JsonEntry
+        {
+            internal Guid Id { get; set; }
+
+            internal Type Type { get; set; }
+
+            internal string Json { get; set; }
         }
     }
 }
