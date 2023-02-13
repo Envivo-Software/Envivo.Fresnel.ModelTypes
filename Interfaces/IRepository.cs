@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
@@ -19,16 +19,16 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         where TAggregateRoot : class
     {
         /// <summary>
-        /// Returns all known Aggregate Roots of the given Type
+        /// Returns any Aggregate Roots of the given Type that match the given predicate
         /// </summary>
         /// <returns></returns>
-        IQueryable<TAggregateRoot> GetAll();
+        Task<IEnumerable<TAggregateRoot>> FindAsync(Predicate<TAggregateRoot> predicate, int pageNumber, int pageSize, string orderBy);
 
         /// <summary>
         /// Loads and returns the Aggregate Root matching the given Id
         /// </summary>
         /// <param name="id"></param>
-        TAggregateRoot? Load(Guid id);
+        Task<TAggregateRoot?> LoadAsync(Guid id);
 
         /// <summary>
         /// Saves the given Aggregate Root and it's contents within a transaction.
@@ -39,24 +39,24 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// <param name="deletedObjects">Any objects deleted from the aggregate</param>
         /// <returns>The number of saved items</returns>
 
-        int Save(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects);
+        Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects);
 
         /// <summary>
         /// Deletes the given Aggregate Root, along with it's contents
         /// </summary>
         /// <param name="aggregateRoot"></param>
-        void Delete(TAggregateRoot aggregateRoot);
+        Task DeleteAsync(TAggregateRoot aggregateRoot);
 
         /// <summary>
         /// Locks the Aggregate Root, and prevents other users from changing it's contents
         /// </summary>
         /// <param name="aggregateRoot"></param>
-        IAggregateLock? Lock(TAggregateRoot aggregateRoot);
+        Task<IAggregateLock?> LockAsync(TAggregateRoot aggregateRoot);
 
         /// <summary>
         /// Unlocks the Aggregate Root, and allows other users to change it's contents
         /// </summary>
         /// <param name="aggregateRoot"></param>
-        void Unlock(TAggregateRoot aggregateRoot);
+        Task UnlockAsync(TAggregateRoot aggregateRoot);
     }
 }

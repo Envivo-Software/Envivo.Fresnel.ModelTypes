@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes
 {
@@ -39,26 +40,44 @@ namespace Envivo.Fresnel.ModelTypes
             }
         }
 
-        public IQueryable<TAggregateRoot> GetAll()
+        public async Task<IEnumerable<TAggregateRoot>> FindAsync(Predicate<TAggregateRoot> predicate, int pageNumber, int pageSize, string orderBy)
         {
             var results =
                 _Items.Values
                 .Select(o => JsonSerializer.Deserialize(o.Json, o.Type, _JsonSerializerOptions))
                 .Cast<TAggregateRoot>()
                 .ToList();
-            return results.AsQueryable();
+
+            if (predicate != null)
+            {
+                results =
+                    results.Where(m => predicate(m))
+                    .ToList();
+            }
+
+            // TODO: Add OrderBy
+
+            results =
+                results
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return await Task.FromResult(results);
         }
 
-        public TAggregateRoot? Load(Guid id)
+        public async Task<TAggregateRoot> LoadAsync(Guid id)
         {
             var match = _Items.GetValueOrDefault(id);
-            return
+            var result =
                 match == null ?
                 null :
                 JsonSerializer.Deserialize(match.Json, match.Type, _JsonSerializerOptions) as TAggregateRoot;
+
+            return await Task.FromResult(result);
         }
 
-        public int Save(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
+        public async Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
         {
             var newAggregates =
                 newObjects
@@ -78,28 +97,30 @@ namespace Envivo.Fresnel.ModelTypes
                 Save(ar);
             }
 
-            return newAggregates.Count() + modifiedAggregates.Count();
+            var result = newAggregates.Count + modifiedAggregates.Count;
+            return await Task.FromResult(result);
+        }
+
+        public async Task DeleteAsync(TAggregateRoot aggregateRoot)
+        {
+            _Items.Remove(aggregateRoot.Id);
+            await Task.CompletedTask;
+        }
+
+        public async Task<IAggregateLock> LockAsync(TAggregateRoot aggregateRoot)
+        {
+            await Task.CompletedTask;
+            return null;
+        }
+
+        public async Task UnlockAsync(TAggregateRoot aggregateRoot)
+        {
+            await Task.CompletedTask;
         }
 
         private void Save(TAggregateRoot aggregateRoot)
         {
             _Items[aggregateRoot.Id] = CreateJsonEntry(aggregateRoot);
-        }
-
-        public void Delete(TAggregateRoot aggregateRoot)
-        {
-            _Items.Remove(aggregateRoot.Id);
-        }
-
-        public IAggregateLock Lock(TAggregateRoot aggregateRoot)
-        {
-            // Not applicable
-            return null;
-        }
-
-        public void Unlock(TAggregateRoot aggregateRoot)
-        {
-            // Not applicable
         }
 
         private JsonEntry CreateJsonEntry(TAggregateRoot obj)
