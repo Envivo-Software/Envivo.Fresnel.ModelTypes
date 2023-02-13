@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
@@ -18,7 +19,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// <summary>
         /// Returns a set of results
         /// </summary>
-        IEnumerable<TResult> GetResults();
+        Task<IEnumerable<TResult>> GetResultsAsync();
     }
 
     public interface IQuerySpecification<TRequestor, TResult> : IQuerySpecification<TResult>
@@ -27,6 +28,6 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// <summary>
         /// Returns a set of results
         /// </summary>
-        IEnumerable<TResult> GetResults(TRequestor requestor);
+        Task<IEnumerable<TResult>> GetResultsAsync(TRequestor requestor);
     }
 }
