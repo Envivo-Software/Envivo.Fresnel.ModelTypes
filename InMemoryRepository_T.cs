@@ -3,9 +3,11 @@
 using Envivo.Fresnel.ModelTypes.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes
@@ -40,30 +42,16 @@ namespace Envivo.Fresnel.ModelTypes
             }
         }
 
-        public async Task<IEnumerable<TAggregateRoot>> FindAsync(Predicate<TAggregateRoot> predicate, int pageNumber, int pageSize, string orderBy)
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<TAggregateRoot> GetQuery()
         {
-            var results =
+            return
                 _Items.Values
-                .Select(o => JsonSerializer.Deserialize(o.Json, o.Type, _JsonSerializerOptions))
-                .Cast<TAggregateRoot>()
-                .ToList();
-
-            if (predicate != null)
-            {
-                results =
-                    results.Where(m => predicate(m))
-                    .ToList();
-            }
-
-            // TODO: Add OrderBy
-
-            results =
-                results
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            return await Task.FromResult(results);
+                .Select(entry => Deserialise(entry))
+                .AsQueryable();
         }
 
         public async Task<TAggregateRoot> LoadAsync(Guid id)
@@ -72,7 +60,7 @@ namespace Envivo.Fresnel.ModelTypes
             var result =
                 match == null ?
                 null :
-                JsonSerializer.Deserialize(match.Json, match.Type, _JsonSerializerOptions) as TAggregateRoot;
+                Deserialise(match);
 
             return await Task.FromResult(result);
         }
@@ -131,6 +119,11 @@ namespace Envivo.Fresnel.ModelTypes
                 Type = obj.GetType(),
                 Json = JsonSerializer.Serialize(obj, _JsonSerializerOptions)
             };
+        }
+
+        private TAggregateRoot Deserialise(JsonEntry entry)
+        {
+            return JsonSerializer.Deserialize(entry.Json, entry.Type, _JsonSerializerOptions) as TAggregateRoot;
         }
 
         private record JsonEntry

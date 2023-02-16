@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Interfaces
@@ -19,10 +20,10 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         where TAggregateRoot : class
     {
         /// <summary>
-        /// Returns any Aggregate Roots of the given Type that match the given predicate
+        /// Returns a queryable of the Aggregate Roots for this repository. This query is extended at run-time, prior to the results being materialised.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<TAggregateRoot>> FindAsync(Predicate<TAggregateRoot> predicate, int pageNumber, int pageSize, string orderBy);
+        IQueryable<TAggregateRoot> GetQuery();
 
         /// <summary>
         /// Loads and returns the Aggregate Root matching the given Id
