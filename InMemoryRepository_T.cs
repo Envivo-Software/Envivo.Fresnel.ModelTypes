@@ -38,7 +38,7 @@ namespace Envivo.Fresnel.ModelTypes
         {
             foreach (var obj in initialItems)
             {
-                _Items[obj.Id] = CreateJsonEntry(obj);
+                _Items.Add(obj.Id, CreateJsonEntry(obj));
             }
         }
 
