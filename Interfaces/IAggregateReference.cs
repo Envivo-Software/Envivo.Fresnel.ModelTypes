@@ -1,6 +1,7 @@
 ﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2023 Envivo Software
 // SPDX-License-Identifier: Apache-2.0
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Interfaces
@@ -8,9 +9,12 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// <summary>
     /// Provides a reference to another Aggregate Root
     /// </summary>
-    public interface IAggregateReference<TAggregateRoot> : IValueObject, IPersistable
+    public interface IAggregateReference<TAggregateRoot> : IValueObject
         where TAggregateRoot : class, IAggregateRoot
     {
+        [Key]
+        public Guid Id { get; set; }
+
         /// <summary>
         /// The referenced Aggregate's Type
         /// </summary>

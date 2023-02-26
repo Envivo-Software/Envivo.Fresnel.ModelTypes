@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 using Envivo.Fresnel.ModelTypes.Interfaces;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes
@@ -28,9 +29,8 @@ namespace Envivo.Fresnel.ModelTypes
             };
         }
 
+        [Key]
         public Guid Id { get; set; }
-
-        public long Version { get; set; }
 
         /// <summary>
         /// <inheritdoc/>
