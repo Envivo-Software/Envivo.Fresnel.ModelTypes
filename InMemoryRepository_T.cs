@@ -3,11 +3,9 @@
 using Envivo.Fresnel.ModelTypes.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes
@@ -54,7 +52,7 @@ namespace Envivo.Fresnel.ModelTypes
                 .AsQueryable();
         }
 
-        public async Task<TAggregateRoot> LoadAsync(Guid id)
+        public Task<TAggregateRoot> LoadAsync(Guid id)
         {
             var match = _Items.GetValueOrDefault(id);
             var result =
@@ -62,10 +60,10 @@ namespace Envivo.Fresnel.ModelTypes
                 null :
                 Deserialise(match);
 
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
 
-        public async Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
+        public Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
         {
             var newAggregates =
                 newObjects
@@ -86,24 +84,23 @@ namespace Envivo.Fresnel.ModelTypes
             }
 
             var result = newAggregates.Count + modifiedAggregates.Count;
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
 
-        public async Task DeleteAsync(TAggregateRoot aggregateRoot)
+        public Task DeleteAsync(TAggregateRoot aggregateRoot)
         {
             _Items.Remove(aggregateRoot.Id);
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task<IAggregateLock> LockAsync(TAggregateRoot aggregateRoot)
+        public Task<IAggregateLock> LockAsync(TAggregateRoot aggregateRoot)
         {
-            await Task.CompletedTask;
-            return null;
+            return Task.FromResult((IAggregateLock)null);
         }
 
-        public async Task UnlockAsync(TAggregateRoot aggregateRoot)
+        public Task UnlockAsync(TAggregateRoot aggregateRoot)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         private void Save(TAggregateRoot aggregateRoot)
