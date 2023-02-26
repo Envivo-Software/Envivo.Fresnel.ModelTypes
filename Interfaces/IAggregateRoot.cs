@@ -10,5 +10,10 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// </summary>
     public interface IAggregateRoot : IEntity
     {
+        /// <summary>
+        /// Returns an Aggregate Reference for this Aggregate root
+        /// </summary>
+        /// <returns></returns>
+        public IAggregateReference<T> ToReference<T>() where T : class, IAggregateRoot;
     }
 }
