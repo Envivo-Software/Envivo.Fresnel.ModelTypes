@@ -9,8 +9,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// <summary>
     /// Provides a reference to another Aggregate Root
     /// </summary>
-    public interface IAggregateReference<TAggregateRoot> : IValueObject
-        where TAggregateRoot : class, IAggregateRoot
+    public interface IAggregateReference : IValueObject
     {
         [Key]
         public Guid Id { get; set; }
@@ -29,6 +28,15 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// A user-friendly description that remains accurate, regardless of any changes to the Aggregate itself
         /// </summary>
         public string Description { get; }
+    }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    /// <typeparam name="TAggregateRoot"></typeparam>
+    public interface IAggregateReference<TAggregateRoot> : IAggregateReference
+        where TAggregateRoot : class, IAggregateRoot
+    {
 
         /// <summary>
         /// Returns the Aggregate that matches this reference
