@@ -9,7 +9,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// <summary>
     /// Provides a reference to another Aggregate Root
     /// </summary>
-    public interface IAggregateReference : IValueObject
+    public interface IAggregateReference
     {
         [Key]
         public Guid Id { get; set; }
