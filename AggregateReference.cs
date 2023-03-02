@@ -20,12 +20,13 @@ namespace Envivo.Fresnel.ModelTypes
         /// <returns></returns>
         public static IAggregateReference<TAggregateRoot> From(IAggregateRoot aggregateRoot)
         {
+            var type = aggregateRoot.GetType();
             return new AggregateReference<TAggregateRoot>
             {
                 Id = Guid.NewGuid(),
                 AggregateId = aggregateRoot.Id,
-                TypeName = aggregateRoot.GetType().FullName,
-                Description = aggregateRoot.ToString()
+                TypeName = type.FullName,
+                Description = $"{type.Name}: {aggregateRoot}"
             };
         }
 
