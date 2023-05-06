@@ -18,7 +18,7 @@ namespace Envivo.Fresnel.ModelTypes
         /// </summary>
         /// <param name="aggregateRoot"></param>
         /// <returns></returns>
-        public static IAggregateReference<TAggregateRoot> From(IAggregateRoot aggregateRoot)
+        public static AggregateReference<TAggregateRoot> From(IAggregateRoot aggregateRoot)
         {
             var type = aggregateRoot.GetType();
             return new AggregateReference<TAggregateRoot>
@@ -47,6 +47,11 @@ namespace Envivo.Fresnel.ModelTypes
         /// <inheritdoc/>
         /// </summary>
         public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return Description;
+        }
 
         /// <summary>
         /// <inheritdoc/>
