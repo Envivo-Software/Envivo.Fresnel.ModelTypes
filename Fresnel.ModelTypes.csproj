@@ -2,8 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<AssemblyVersion>23.0402.0.0</AssemblyVersion>
-		<FileVersion>23.0402.0.0</FileVersion>
+		<AssemblyVersion>23.0508.0.0</AssemblyVersion>
+		<FileVersion>23.0508.0.0</FileVersion>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<RootNamespace>Envivo.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<AssemblyName>Envivo.$(MSBuildProjectName)</AssemblyName>
