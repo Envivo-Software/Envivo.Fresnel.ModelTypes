@@ -1,3 +1,14 @@
+2023-05-08: v2.0.4
+
+⚠ Breaking changes:
+- IRepository<T> updated with async methods
+- IQuerySpecification updated with async methods
+
+🎁 New features:
+- Added IAggregateReference<T> and AggregateReference<T> 
+
+==============================================================================
+
 2023-02-11: v1.3.0
 
 🐞 Fixes:
