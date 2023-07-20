@@ -1,5 +1,7 @@
 ﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2023 Envivo Software
 // SPDX-License-Identifier: Apache-2.0
+using System;
+
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
     /// <summary>
@@ -8,5 +10,9 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// </summary>
     public interface IValueObject : IDomainObject
     {
+        /// <summary>
+        /// The unique identifier for this ValueObject
+        /// </summary>
+        Guid Id { get; set; }
     }
 }
