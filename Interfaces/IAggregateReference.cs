@@ -43,6 +43,9 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// </summary>
         /// <param name="aggregateRepository">The repository containing the Aggregate</param>
         /// <returns></returns>
-        Task<TAggregateRoot> ToAggregateAsync(IRepository<TAggregateRoot> aggregateRepository);
+        Task<TAggregateRoot> ToAggregateAsync(IRepository<TAggregateRoot> aggregateRepository)
+        {
+            return aggregateRepository.LoadAsync(AggregateId);
+        }
     }
 }

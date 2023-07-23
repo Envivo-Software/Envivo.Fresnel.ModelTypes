@@ -9,13 +9,6 @@ namespace Envivo.Fresnel.ModelTypes
     /// </summary>
     public abstract partial class BaseAggregateRoot : BaseDomainObject, IAggregateRoot
     {
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        /// <returns></returns>
-        IAggregateReference<T> IAggregateRoot.ToReference<T>()
-        {
-            return AggregateReference<T>.From(this);
-        }
+       
     }
 }

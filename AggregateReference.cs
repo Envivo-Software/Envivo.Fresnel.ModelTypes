@@ -3,7 +3,6 @@
 using Envivo.Fresnel.ModelTypes.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes
 {
@@ -51,16 +50,6 @@ namespace Envivo.Fresnel.ModelTypes
         public override string ToString()
         {
             return Description;
-        }
-
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        /// <param name="aggregateRepository"></param>
-        /// <returns></returns>
-        public Task<TAggregateRoot> ToAggregateAsync(IRepository<TAggregateRoot> aggregateRepository)
-        {
-            return aggregateRepository.LoadAsync(this.AggregateId);
         }
     }
 }
