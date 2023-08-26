@@ -10,9 +10,9 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     public interface IAggregateLock
     {
         /// <summary>
-        /// The Aggregate Root being locked
+        /// Reference to the Aggregate Root being locked
         /// </summary>
-        IAggregateRoot AggregateRoot { get; set; }
+        IAggregateReference<IAggregateRoot> AggregateReference { get; set; }
 
         /// <summary>
         /// The user that locked the Aggregate
@@ -22,6 +22,6 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// <summary>
         /// The time when the lock should be released. Using an 'end time' should prevent rogue locks blocking usage indefinitely.
         /// </summary>
-        DateTime LockedUntil { get; set; }
+        DateTimeOffset LockedUntil { get; set; }
     }
 }

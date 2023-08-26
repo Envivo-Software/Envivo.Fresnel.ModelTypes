@@ -13,7 +13,7 @@ namespace Envivo.Fresnel.ModelTypes
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public IAggregateRoot AggregateRoot { get; set; }
+        public IAggregateReference<IAggregateRoot> AggregateReference { get; set; }
 
         /// <summary>
         /// <inheritdoc/>
@@ -23,6 +23,6 @@ namespace Envivo.Fresnel.ModelTypes
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public DateTime LockedUntil { get; set; }
+        public DateTimeOffset LockedUntil { get; set; }
     }
 }
