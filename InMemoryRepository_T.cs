@@ -52,7 +52,7 @@ namespace Envivo.Fresnel.ModelTypes
                 .AsQueryable();
         }
 
-        public Task<TAggregateRoot> LoadAsync(Guid id)
+        public async Task<TAggregateRoot> LoadAsync(Guid id)
         {
             var match = _Items.GetValueOrDefault(id);
             var result =
@@ -60,10 +60,10 @@ namespace Envivo.Fresnel.ModelTypes
                 null :
                 Deserialise(match);
 
-            return Task.FromResult(result);
+            return await Task.FromResult(result);
         }
 
-        public Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
+        public async Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
         {
             var newAggregates =
                 newObjects
@@ -84,23 +84,24 @@ namespace Envivo.Fresnel.ModelTypes
             }
 
             var result = newAggregates.Count + modifiedAggregates.Count;
-            return Task.FromResult(result);
+            return await Task.FromResult(result);
         }
 
-        public Task DeleteAsync(TAggregateRoot aggregateRoot)
+        public async Task DeleteAsync(TAggregateRoot aggregateRoot)
         {
             _Items.Remove(aggregateRoot.Id);
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
-        public Task<IAggregateLock> LockAsync(TAggregateRoot aggregateRoot)
+        public async Task<IAggregateLock> LockAsync(TAggregateRoot aggregateRoot)
         {
-            return Task.FromResult((IAggregateLock)null);
+            var result = (IAggregateLock)null;
+            return await Task.FromResult(result);
         }
 
-        public Task UnlockAsync(TAggregateRoot aggregateRoot)
+        public async Task UnlockAsync(TAggregateRoot aggregateRoot)
         {
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         private void Save(TAggregateRoot aggregateRoot)
