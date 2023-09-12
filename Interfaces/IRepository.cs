@@ -22,7 +22,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// <summary>
         /// Returns a queryable of the Aggregate Roots for this repository. This query is extended at run-time, prior to the results being materialised.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An IQueryable from the underlying database provider</returns>
         IQueryable<TAggregateRoot> GetQuery();
 
         /// <summary>
