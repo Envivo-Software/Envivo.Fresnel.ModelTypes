@@ -69,6 +69,7 @@ namespace Envivo.Fresnel.ModelTypes
                 newObjects
                 .OfType<TAggregateRoot>()
                 .ToList();
+            newAggregates.Add(aggregateRoot);
             foreach (var ar in newAggregates)
             {
                 Save(ar);
