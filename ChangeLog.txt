@@ -1,3 +1,23 @@
+2023-10-11: v2.2.2
+
+⚠ Breaking changes: Updated to .NET 7
+
+🎁 New features:
+- Added IPagedFiltering<>
+- Added ICommandObject
+
+🐞 Fixes:
+- InMemoryRepository now includes aggregateRoot in Save()
+- Use async/await consistently
+- IAggregateLock: Updated properties to simplify persistence
+- Corrected comments
+- IValueObject now has Id property, so it's easier to persist in an independent table
+
+🎨 Improvements:
+- AggregateRoot and IAggregateReference now use Interface default implementations, to make consumer code easier
+
+==============================================================================
+
 2023-05-08: v2.0.4
 
 ⚠ Breaking changes:
