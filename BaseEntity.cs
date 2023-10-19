@@ -14,7 +14,7 @@ namespace Envivo.Fresnel.ModelTypes
             if (object.ReferenceEquals(this, obj))
                 return true;
 
-            var that = obj as BaseDomainObject;
+            var that = obj as BaseEntity;
             if (that == null)
                 return false;
 
