@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
     /// <summary>
-    /// Provides a reference to another Aggregate Root
+    /// A memento that provides a reference to an Aggregate Root
     /// </summary>
     public interface IAggregateReference : IDomainObject
     {
