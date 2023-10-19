@@ -20,19 +20,12 @@ namespace Envivo.Fresnel.ModelTypes
     {
         public override bool Equals(object obj)
         {
-            if (object.ReferenceEquals(this, obj))
-                return true;
-
-            var that = obj as BaseDomainObject;
-            if (that == null)
-                return false;
-
-            return this.Id.Equals(that.Id);
+            return this.Equals(obj, o => o.Id);
         }
 
         public override int GetHashCode()
         {
-            return this.Id.GetHashCode();
+            return this.GetHashCode(o => o.Id);
         }
 
         /// <summary>

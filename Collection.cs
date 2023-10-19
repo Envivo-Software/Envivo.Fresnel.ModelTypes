@@ -512,19 +512,12 @@ namespace Envivo.Fresnel.ModelTypes
 
         public override bool Equals(object obj)
         {
-            if (object.ReferenceEquals(this, obj))
-                return true;
-
-            var that = obj as Collection<T>;
-            if (that == null)
-                return false;
-
-            return this.Id.Equals(that.Id);
+            return this.Equals(obj, o => o.Id);
         }
 
         public override int GetHashCode()
         {
-            return _Id.GetHashCode();
+            return this.GetHashCode(o => o.Id);
         }
 
         public virtual void Dispose()
