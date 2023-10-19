@@ -18,10 +18,6 @@ namespace Envivo.Fresnel.ModelTypes
                                                      IValidatable,
                                                      IDisposable
     {
-        private Guid _Id = Guid.NewGuid();
-        private long _Version = -1;
-        private IAudit _Audit = new Audit();
-
         public override bool Equals(object obj)
         {
             if (object.ReferenceEquals(this, obj))
@@ -36,35 +32,23 @@ namespace Envivo.Fresnel.ModelTypes
 
         public override int GetHashCode()
         {
-            return _Id.GetHashCode();
+            return this.Id.GetHashCode();
         }
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public virtual Guid Id
-        {
-            get { return _Id; }
-            set { _Id = value; }
-        }
+        public virtual Guid Id { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public virtual long Version
-        {
-            get { return _Version; }
-            set { _Version = value; }
-        }
+        public virtual long Version { get; set; } = -1;
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public virtual IAudit Audit
-        {
-            get { return _Audit; }
-            set { _Audit = value; }
-        }
+        public virtual IAudit Audit { get; set; } = new Audit();
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
 
