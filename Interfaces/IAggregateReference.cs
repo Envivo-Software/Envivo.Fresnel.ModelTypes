@@ -12,7 +12,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     public interface IAggregateReference : IDomainObject
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; }
 
         /// <summary>
         /// The referenced Aggregate's Type
