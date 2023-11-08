@@ -16,7 +16,7 @@ namespace Envivo.Fresnel.ModelTypes
     /// </summary>
     /// <typeparam name="TAggregateRoot"></typeparam>
     public class InMemoryRepository<TAggregateRoot> : IRepository<TAggregateRoot>
-        where TAggregateRoot : class, IAggregateRoot
+        where TAggregateRoot : class, IEntity
     {
         private readonly Dictionary<Guid, JsonEntry> _Items = new();
 
