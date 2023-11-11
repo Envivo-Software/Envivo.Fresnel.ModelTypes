@@ -7,12 +7,12 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// <summary>
     /// Used for recording basic audit information for a persisted Domain Object
     /// </summary>
-    public interface IAudit
+    public interface IAudit : IValueObject
     {
         /// <summary>
-        /// The Domain Object this information is for
+        /// A reference to the associated object
         /// </summary>
-        IDomainObject DomainObject { get; set; }
+        Guid ParentObjectId { get; set; }
 
         /// <summary>
         /// The user that created the associated object

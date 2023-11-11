@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 using Envivo.Fresnel.ModelTypes.Interfaces;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Envivo.Fresnel.ModelTypes
 {
@@ -13,7 +14,13 @@ namespace Envivo.Fresnel.ModelTypes
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public virtual IDomainObject DomainObject { get; set; }
+        [Key]
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public virtual Guid ParentObjectId { get; set; }
 
         /// <summary>
         /// <inheritdoc/>
