@@ -1,3 +1,19 @@
+2023-11-27: v2.4.0
+
+🎁 New features:
+🐞 Fixes:
+- InMemoryRepository: Corrected generic constraint to match IRepository<T>
+- InMemoryRepository: Now copes with null entries in collection
+- IAggregateReference: Id doesn't need setter
+- Correction in BaseEntity.Equals()
+
+🎨 Improvements:
+- Added EqualityExtensions, so that consumer can provide a Unique Key (for comparing persistent objects)
+- Base classes now use EqualityExtensions
+- IAudit now marked as IValueObject
+- Updated property syntax
+
+==============================================================================
 2023-10-11: v2.2.2
 
 ⚠ Breaking changes: Updated to .NET 7
