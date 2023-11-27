@@ -49,6 +49,7 @@ namespace Envivo.Fresnel.ModelTypes
             return
                 _Items.Values
                 .Select(entry => Deserialise(entry))
+                .Where(e => e != null)
                 .AsQueryable();
         }
 
@@ -122,6 +123,9 @@ namespace Envivo.Fresnel.ModelTypes
 
         private TAggregateRoot Deserialise(JsonEntry entry)
         {
+            if (entry == null)
+                return null;
+
             return JsonSerializer.Deserialize(entry.Json, entry.Type, _JsonSerializerOptions) as TAggregateRoot;
         }
 
