@@ -47,17 +47,5 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// </summary>
         /// <param name="aggregateRoot"></param>
         Task DeleteAsync(TAggregateRoot aggregateRoot);
-
-        /// <summary>
-        /// Locks the Aggregate Root, and prevents other users from changing it's contents
-        /// </summary>
-        /// <param name="aggregateRoot"></param>
-        Task<IAggregateLock?> LockAsync(TAggregateRoot aggregateRoot);
-
-        /// <summary>
-        /// Unlocks the Aggregate Root, and allows other users to change it's contents
-        /// </summary>
-        /// <param name="aggregateRoot"></param>
-        Task UnlockAsync(TAggregateRoot aggregateRoot);
     }
 }

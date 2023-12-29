@@ -95,17 +95,6 @@ namespace Envivo.Fresnel.ModelTypes
             await Task.CompletedTask;
         }
 
-        public async Task<IAggregateLock> LockAsync(TAggregateRoot aggregateRoot)
-        {
-            var result = (IAggregateLock)null;
-            return await Task.FromResult(result);
-        }
-
-        public async Task UnlockAsync(TAggregateRoot aggregateRoot)
-        {
-            await Task.CompletedTask;
-        }
-
         private void Save(TAggregateRoot aggregateRoot)
         {
             _Items[aggregateRoot.Id] = CreateJsonEntry(aggregateRoot);
