@@ -32,7 +32,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         Task<TAggregateRoot?> LoadAsync(Guid id);
 
         /// <summary>
-        /// Saves the given Aggregate Root and it's contents within a transaction.
+        /// Saves the given Aggregate Root and its contents within a transaction.
         /// </summary>
         /// <param name="aggregateRoot">The primary aggregate being saved</param>
         /// <param name="newObjects">Any new objects within the aggregate</param>
@@ -43,7 +43,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects);
 
         /// <summary>
-        /// Deletes the given Aggregate Root, along with it's contents
+        /// Deletes the given Aggregate Root, along with its contents
         /// </summary>
         /// <param name="aggregateRoot"></param>
         Task DeleteAsync(TAggregateRoot aggregateRoot);

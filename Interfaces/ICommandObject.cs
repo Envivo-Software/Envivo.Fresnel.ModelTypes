@@ -5,7 +5,7 @@ using System;
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
     /// <summary>
-    /// Encapsulates a command that requires more intelligence than a standard Method
+    /// Encapsulates a command that requires more interaction or behaviour than a standard Method
     /// </summary>
     public interface ICommandObject
     {

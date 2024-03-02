@@ -9,9 +9,7 @@ using System.Text;
 
 namespace Envivo.Fresnel.ModelTypes
 {
-    /// <summary>
-    /// Any object within a Domain
-    /// </summary>
+    /// <inheritdoc cref="IDomainObject" />
     [Serializable]
     public abstract partial class BaseDomainObject : IDomainObject,
                                                      INotifyPropertyChanged,
@@ -28,19 +26,13 @@ namespace Envivo.Fresnel.ModelTypes
             return this.GetHashCode(o => o.Id);
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual Guid Id { get; set; } = Guid.NewGuid();
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual long Version { get; set; } = -1;
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual IAudit Audit { get; set; } = new Audit();
 
         public virtual event PropertyChangedEventHandler PropertyChanged;

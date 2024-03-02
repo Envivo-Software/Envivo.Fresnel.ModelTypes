@@ -25,17 +25,13 @@ namespace Envivo.Fresnel.ModelTypes
 
         private ReaderWriterLock _Lock = new ReaderWriterLock();
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public Collection()
             : base()
         {
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public Collection(int capacity)
             : base()
         {
@@ -43,9 +39,7 @@ namespace Envivo.Fresnel.ModelTypes
             _InnerList = new List<T>(capacity);
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public Collection(IEnumerable<T> collection)
             : base()
         {
@@ -63,9 +57,7 @@ namespace Envivo.Fresnel.ModelTypes
 
         public virtual long Version { get; set; }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual IList<T> InnerList
         {
             get { return _InnerList; }
@@ -110,9 +102,7 @@ namespace Envivo.Fresnel.ModelTypes
 
         public virtual event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual T this[int index]
         {
             get
@@ -145,9 +135,7 @@ namespace Envivo.Fresnel.ModelTypes
             }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual void Add(T item)
         {
             var e = new CollectionChangeEventArgs<T>()
@@ -169,9 +157,7 @@ namespace Envivo.Fresnel.ModelTypes
             this.OnInsertedItem(e);
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual void AddRange(IEnumerable<T> collection)
         {
             if (collection == null)
@@ -183,9 +169,7 @@ namespace Envivo.Fresnel.ModelTypes
             }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual void Clear()
         {
             var e = new CollectionChangeEventArgs<T>()
@@ -209,9 +193,7 @@ namespace Envivo.Fresnel.ModelTypes
             this.OnCleared(e);
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual bool Contains(T item)
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
@@ -220,18 +202,14 @@ namespace Envivo.Fresnel.ModelTypes
             return result;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual void CopyTo(T[] array)
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
             _Items.CopyTo(array);
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual void CopyTo(T[] array, int arrayIndex)
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
@@ -239,9 +217,7 @@ namespace Envivo.Fresnel.ModelTypes
             _Lock.ReleaseReaderLock();
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual void CopyTo(int index, T[] array, int arrayIndex, int count)
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
@@ -249,9 +225,7 @@ namespace Envivo.Fresnel.ModelTypes
             _Lock.ReleaseReaderLock();
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual int Count
         {
             get
@@ -263,9 +237,7 @@ namespace Envivo.Fresnel.ModelTypes
             }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual int IndexOf(T item)
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
@@ -274,9 +246,7 @@ namespace Envivo.Fresnel.ModelTypes
             return result;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual int IndexOf(T item, int index)
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
@@ -285,9 +255,7 @@ namespace Envivo.Fresnel.ModelTypes
             return result;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual int IndexOf(T item, int index, int count)
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
@@ -296,17 +264,13 @@ namespace Envivo.Fresnel.ModelTypes
             return result;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual bool IsReadOnly
         {
             get { return false; }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual void Insert(int index, T item)
         {
             _Lock.AcquireWriterLock(Timeout.Infinite);
@@ -314,9 +278,7 @@ namespace Envivo.Fresnel.ModelTypes
             _Lock.ReleaseWriterLock();
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual bool Remove(T item)
         {
             var e = new CollectionChangeEventArgs<T>()
@@ -340,9 +302,7 @@ namespace Envivo.Fresnel.ModelTypes
             return true;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual void RemoveAt(int index)
         {
             var e = new CollectionChangeEventArgs<T>()
@@ -364,9 +324,7 @@ namespace Envivo.Fresnel.ModelTypes
             this.OnRemovedItem(e);
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual IEnumerator<T> GetEnumerator()
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
@@ -375,9 +333,7 @@ namespace Envivo.Fresnel.ModelTypes
             return result;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         IEnumerator IEnumerable.GetEnumerator()
         {
             _Lock.AcquireReaderLock(Timeout.Infinite);
@@ -386,9 +342,7 @@ namespace Envivo.Fresnel.ModelTypes
             return result;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         private NotifyCollectionChangedEventArgs CreateCollectionChangedArgsFrom(ICollectionChangeEventArgs<T> e)
         {
             switch (e.Action)

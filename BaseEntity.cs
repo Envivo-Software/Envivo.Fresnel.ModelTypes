@@ -4,9 +4,7 @@ using Envivo.Fresnel.ModelTypes.Interfaces;
 
 namespace Envivo.Fresnel.ModelTypes
 {
-    /// <summary>
-    /// Any object within a Domain that has unique identity.
-    /// </summary>
+    /// <inheritdoc cref="IEntity" />
     public abstract partial class BaseEntity : BaseDomainObject, IEntity
     {
         public override bool Equals(object obj)

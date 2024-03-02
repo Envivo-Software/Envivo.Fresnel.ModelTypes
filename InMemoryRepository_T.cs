@@ -40,10 +40,7 @@ namespace Envivo.Fresnel.ModelTypes
             }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
-        /// <returns></returns>
         public IQueryable<TAggregateRoot> GetQuery()
         {
             return
@@ -53,6 +50,7 @@ namespace Envivo.Fresnel.ModelTypes
                 .AsQueryable();
         }
 
+        /// <inheritdoc/>
         public async Task<TAggregateRoot> LoadAsync(Guid id)
         {
             var match = _Items.GetValueOrDefault(id);
@@ -64,6 +62,7 @@ namespace Envivo.Fresnel.ModelTypes
             return await Task.FromResult(result);
         }
 
+        /// <inheritdoc/>
         public async Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
         {
             var newAggregates =
@@ -89,6 +88,7 @@ namespace Envivo.Fresnel.ModelTypes
             return await Task.FromResult(result);
         }
 
+        /// <inheritdoc/>
         public async Task DeleteAsync(TAggregateRoot aggregateRoot)
         {
             _Items.Remove(aggregateRoot.Id);

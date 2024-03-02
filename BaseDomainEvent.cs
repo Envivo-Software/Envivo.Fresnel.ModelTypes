@@ -5,14 +5,10 @@ using System;
 
 namespace Envivo.Fresnel.ModelTypes
 {
-    /// <summary>
-    /// Captures the state of an Entity (or Entities) at a point in time.
-    /// </summary>
+    /// <inheritdoc cref="IDomainEvent" />
     public abstract partial class BaseDomainEvent : BaseDomainObject, IDomainEvent
     {
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public virtual DateTime OccurredAt { get; set; }
 
         public override bool Equals(object obj)

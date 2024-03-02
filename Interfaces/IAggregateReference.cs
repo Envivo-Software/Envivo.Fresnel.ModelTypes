@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
     /// <summary>
-    /// A memento that provides a reference to an Aggregate Root
+    /// A memento/token that provides a reference to an Aggregate Root
     /// </summary>
     public interface IAggregateReference : IDomainObject
     {
+        /// <summary>
+        /// The unique identifier for this Aggregate Reference
+        /// </summary>
         [Key]
         public Guid Id { get; }
 
@@ -25,7 +28,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         public Guid AggregateId { get; }
 
         /// <summary>
-        /// A user-friendly description that remains accurate, regardless of any changes to the Aggregate itself
+        /// A user-friendly description that remains accurate, regardless of any changes to the referenced Aggregate itself
         /// </summary>
         public string Description { get; }
     }

@@ -5,9 +5,7 @@ using System;
 
 namespace Envivo.Fresnel.ModelTypes
 {
-    /// <summary>
-    /// A object within a Domain that is described by it's characteristics, not identity.
-    /// </summary>
+    /// <inheritdoc cref="IValueObject" />
     public abstract partial class BaseValueObject : BaseDomainObject, IValueObject
     {
         public override bool Equals(object obj)

@@ -6,9 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Envivo.Fresnel.ModelTypes
 {
-    /// <summary>
-    /// <inheritdoc/>
-    /// </summary>
+    /// <inheritdoc cref="IAggregateReference" />
     public record AggregateReference<TAggregateRoot> : IAggregateReference<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
@@ -32,19 +30,13 @@ namespace Envivo.Fresnel.ModelTypes
         [Key]
         public Guid Id { get; set; }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public string TypeName { get; set; }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public Guid AggregateId { get; set; }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public string Description { get; set; }
 
         public override string ToString()

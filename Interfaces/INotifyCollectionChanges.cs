@@ -6,7 +6,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         where T : class;
 
     /// <summary>
-    /// Implemented by collections that should raise events when their contents are modifed
+    /// Implemented by collections that should raise events when their contents are modified
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface INotifyCollectionChanges<T>

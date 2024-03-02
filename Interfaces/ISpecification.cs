@@ -10,7 +10,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     { }
 
     /// <summary>
-    /// Encapsulates a business rule to be made against a Domain Object
+    /// Encapsulates business rules (aka invariants) to be made against a Domain Object
     /// </summary>
     public interface ISpecification<T> : ISpecification
         where T : class

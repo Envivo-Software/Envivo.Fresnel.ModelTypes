@@ -22,6 +22,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         Task<IEnumerable<TResult>> GetResultsAsync();
     }
 
+    /// <inheritdoc/>
     public interface IQuerySpecification<TRequestor, TResult> : IQuerySpecification<TResult>
         where TRequestor : class
     {

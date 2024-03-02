@@ -5,7 +5,8 @@ using System;
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
     /// <summary>
-    /// Captures the state of an Entity (or Entities) at a point in time.
+    /// Represents a notable event that occurred in the business domain.
+    /// Domain Events are used to trigger actions/commands within the system.
     /// Each Domain Event is unique and should NOT be treated as a Value Object.
     /// However, Domain Events should be immutable to avoid the risk of corruption.
     /// </summary>

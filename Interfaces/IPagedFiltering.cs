@@ -13,7 +13,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         where T : class
     {
         /// <summary>
-        /// Returns a filtered set of items using the given query filter. 
+        /// Returns a subset of items using the given query filter. 
         /// </summary>
         /// <param name="queryFilter">The query filter to apply</param>
         /// <returns>The matching items, along with the available count from the persistence store</returns>
