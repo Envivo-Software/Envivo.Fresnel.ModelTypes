@@ -1,6 +1,17 @@
-2023-11-27: v2.3.0
+2024-03-22: v2.4.0
+
+⚠ Breaking changes
+- IRepository: Moved LockAsync and UnlockAsync into IAggregateLockService
 
 🎁 New features:
+- IAggregateLockService: Added for upcoming feature
+
+🐞 Fixes:
+- Corrections to XML comments/docs
+
+==============================================================================
+2023-11-27: v2.3.0
+
 🐞 Fixes:
 - InMemoryRepository: Corrected generic constraint to match IRepository<T>
 - InMemoryRepository: Now copes with null entries in collection
