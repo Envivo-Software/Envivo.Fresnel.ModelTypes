@@ -112,7 +112,7 @@ namespace Envivo.Fresnel.ModelTypes
                     var sb = new StringBuilder("The following problems were found:\n");
                     foreach (var item in _ErrorMap.Where(p => string.IsNullOrEmpty(p.Value) == false))
                     {
-                        sb.AppendLine(string.Concat(" ", item.Key, " : ", item.Value));
+                        sb.AppendLine($" {item.Key} : {item.Value}");
                     }
                     _ErrorMessage = sb.ToString();
                     break;
