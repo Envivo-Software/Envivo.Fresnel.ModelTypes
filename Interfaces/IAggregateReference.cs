@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
     /// <summary>
-    /// A memento/token that provides a reference to an Aggregate Root
+    /// A memento/token that provides a reference to an Aggregate Root in a _different_ Bounded Context.
     /// </summary>
     public interface IAggregateReference : IDomainObject
     {
@@ -34,11 +34,11 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     }
 
     /// <summary>
-    /// <inheritdoc/>
+    /// A memento/token that provides a reference to an Aggregate Root in the _same_ Bounded Context.
     /// </summary>
     /// <typeparam name="TAggregateRoot"></typeparam>
     public interface IAggregateReference<TAggregateRoot> : IAggregateReference
-        where TAggregateRoot : class, IAggregateRoot
+    where TAggregateRoot : class, IAggregateRoot
     {
 
         /// <summary>
