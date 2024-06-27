@@ -25,5 +25,10 @@ namespace Envivo.Fresnel.ModelTypes
                 Description = $"{type.Name}: {entity}"
             };
         }
+
+        public override string ToString()
+        {
+            return Description;
+        }
     }
 }

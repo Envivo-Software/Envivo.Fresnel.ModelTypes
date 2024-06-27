@@ -25,5 +25,10 @@ namespace Envivo.Fresnel.ModelTypes
                 Description = $"{type.Name}: {aggregateRoot}"
             };
         }
+
+        public override string ToString()
+        {
+            return Description;
+        }
     }
 }
