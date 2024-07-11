@@ -1,3 +1,16 @@
+2024-06-24: v2.5.0
+
+🐞 Fixes:
+- AggregateReference<T>: Added ToString() override
+
+🎨 Improvements:
+- ICommandObject: Added generic overloads for Execute(TContext)
+
+🎁 New features:
+- Added non-generic AggregateReference, when references are to different Bounded Contexts
+- Added IEntityReference and EntityReference (similar to IAggregateReference)
+
+==============================================================================
 2024-03-22: v2.4.0
 
 ⚠ Breaking changes
