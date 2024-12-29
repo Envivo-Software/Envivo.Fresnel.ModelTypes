@@ -1,6 +1,8 @@
 ﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2024 Envivo Software
 // SPDX-License-Identifier: Apache-2.0
 
+using System;
+
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {
     /// <summary>
@@ -8,10 +10,16 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// </summary>
     public interface IQueryFilter
     {
-        /// <summary>
         /// The type of the Class being searched for
+        /// The context of this query
         /// </summary>
+        [Obsolete("Use FilterContext.ClassName instead")]
         public string ClassTypeName { get; set; }
+
+        /// <summary>
+        /// The context of this query
+        /// </summary>
+        public IQueryFilterContext FilterContext { get; }
 
         /// <summary>
         /// The filter clause using placeholders for arguments (e.g. WHERE Field1=@0 AND Field2=@1)
@@ -37,5 +45,41 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// The number of items per page
         /// </summary>
         public int? PageSize { get; set; }
+    }
+
+    /// <summary>
+    /// The context within which a QueryFilter is executed
+    /// </summary>
+    public interface IQueryFilterContext
+    {
+        /// <summary>
+        /// The type of the Class being searched for
+        /// </summary>
+        public string ClassTypeName { get; set; }
+
+        /// <summary>
+        /// The parent object (if applicable)
+        /// </summary>
+        public Guid ObjectId { get; set; }
+
+        /// <summary>
+        /// The name of the QuerySpecification to be executed
+        /// </summary>
+        public string QuerySpecificationTypeName { get; set; }
+
+        /// <summary>
+        /// The name of the Property being searched against (if applicable)
+        /// </summary>
+        public string PropertyName { get; set; }
+
+        /// <summary>
+        /// The name of the Parameter being searched against (if applicable)
+        /// </summary>
+        public string ParameterName { get; set; }
+
+        /// <summary>
+        /// The name of the Method that the ParameterName belongs to (if applicable)
+        /// </summary>
+        public string MethodName { get; set; }
     }
 }

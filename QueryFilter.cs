@@ -1,5 +1,6 @@
 ﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2024 Envivo Software
 // SPDX-License-Identifier: Apache-2.0
+using System;
 using Envivo.Fresnel.ModelTypes.Interfaces;
 
 namespace Envivo.Fresnel.ModelTypes
@@ -8,7 +9,11 @@ namespace Envivo.Fresnel.ModelTypes
     public class QueryFilter : IQueryFilter
     {
         /// <inheritdoc/>
+        [Obsolete("Use FilterContext.ClassName instead")]
         public string ClassTypeName { get; set; }
+
+        /// <inheritdoc/>
+        public IQueryFilterContext FilterContext { get; set; }
 
         /// <inheritdoc/>
         public string Filter { get; set; }
