@@ -1,3 +1,17 @@
+2025-04-23: v2.6.0
+
+🐞 Fixes:
+- InMemoryRepository<T>: Now handles interfaces and untyped objects
+- InMemoryRepository<T>: Now checks that initialisation objects have valid IDs
+
+🎨 Improvements:
+- ICommandObject: Added generic overloads for Execute(TContext)
+
+🎁 New features:
+- Added IChartData interfaces to support basic charts & graphs
+- Added ICalendar interface to support Calendar views
+
+==============================================================================
 2024-06-24: v2.5.0
 
 🐞 Fixes:
