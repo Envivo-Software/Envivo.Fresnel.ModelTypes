@@ -11,6 +11,9 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// </summary>
     public interface ICalendar : IEntity
     {
+        /// <summary>
+        /// An overall title for this calendar
+        /// </summary>
         public string Title { get; }
 
         /// <summary>
@@ -26,12 +29,24 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// </summary>
         public interface ICalendarEntry : IValueObject
         {
+            /// <summary>
+            /// The data &amp; time for this entry
+            /// </summary>
             public DateTime EntryDate { get; }
 
+            /// <summary>
+            /// The duration of this entry
+            /// </summary>
             public TimeSpan Duration { get; }
 
+            /// <summary>
+            /// A headline title for this entry
+            /// </summary>
             public string Title { get; }
 
+            /// <summary>
+            /// A longer description for this entry
+            /// </summary>
             public string Description { get; }
         }
     }
