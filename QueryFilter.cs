@@ -13,7 +13,7 @@ namespace Envivo.Fresnel.ModelTypes
         public string ClassTypeName { get; set; }
 
         /// <inheritdoc/>
-        public IQueryFilterContext FilterContext { get; set; }
+        public IQueryFilterContext FilterContext { get; set; } = new SearchQueryFilterContext();
 
         /// <inheritdoc/>
         public string Filter { get; set; }
