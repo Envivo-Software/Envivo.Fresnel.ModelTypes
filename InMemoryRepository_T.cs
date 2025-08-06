@@ -3,8 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Envivo.Fresnel.ModelTypes.Interfaces;
 
@@ -18,23 +16,16 @@ namespace Envivo.Fresnel.ModelTypes
     public class InMemoryRepository<TAggregateRoot> : IRepository<TAggregateRoot>
         where TAggregateRoot : class, IEntity
     {
+        private readonly IJsonObjectSerializer _JsonObjectSerializer;
         private readonly Dictionary<Guid, JsonEntry> _Items = new();
-        private readonly JsonSerializerOptions _JsonSerializerOptions;
 
-        public InMemoryRepository()
+        public InMemoryRepository(IJsonObjectSerializer jsonObjectSerializer = null)
         {
-            _JsonSerializerOptions = new()
-            {
-                ReferenceHandler = ReferenceHandler.Preserve,
-                IncludeFields = true,
-                WriteIndented = true,
-                PropertyNameCaseInsensitive = true,
-            };
-            _JsonSerializerOptions.Converters.Add(new ExplicitTypeInfoJsonConverter());
+            _JsonObjectSerializer = jsonObjectSerializer ?? new InMemoryJsonSerializer();
         }
 
-        public InMemoryRepository(IEnumerable<TAggregateRoot> initialItems)
-            : this()
+        public InMemoryRepository(IEnumerable<TAggregateRoot> initialItems, IJsonObjectSerializer jsonObjectSerializer = null)
+            : this(jsonObjectSerializer)
         {
             var hasMissingIds = initialItems.Any(i => i.Id == Guid.Empty);
             var hasDuplicateIds = initialItems.GroupBy(i => i.Id).Any(grp => grp.Count() > 1);
@@ -112,7 +103,9 @@ namespace Envivo.Fresnel.ModelTypes
 
         private JsonEntry CreateJsonEntry(TAggregateRoot obj)
         {
-            var json = JsonSerializer.Serialize(obj, _JsonSerializerOptions);
+            ArgumentNullException.ThrowIfNull(_JsonObjectSerializer, nameof(_JsonObjectSerializer));
+
+            var json = _JsonObjectSerializer.Serialize(obj);
 
             return new JsonEntry
             {
@@ -124,10 +117,12 @@ namespace Envivo.Fresnel.ModelTypes
 
         private TAggregateRoot Deserialise(JsonEntry entry)
         {
+            ArgumentNullException.ThrowIfNull(_JsonObjectSerializer, nameof(_JsonObjectSerializer));
+
             if (entry == null)
                 return null;
 
-            return JsonSerializer.Deserialize(entry.Json, entry.Type, _JsonSerializerOptions) as TAggregateRoot;
+            return _JsonObjectSerializer.Deserialize<TAggregateRoot>(entry.Json);
         }
 
         private record JsonEntry
@@ -137,47 +132,6 @@ namespace Envivo.Fresnel.ModelTypes
             internal Type Type { get; set; }
 
             internal string Json { get; set; }
-        }
-
-        internal class ExplicitTypeInfoJsonConverter : JsonConverter<object>
-        {
-            private const string TypePropertyName = "$type";
-            private const string DataPropertyName = "$data";
-
-            public override bool CanConvert(Type typeToConvert) =>
-                typeToConvert == typeof(object) ||
-                typeToConvert.IsInterface;
-
-            public override object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-            {
-                using var document = JsonDocument.ParseValue(ref reader);
-                var root = document.RootElement;
-
-                if (!root.TryGetProperty(TypePropertyName, out var typeProperty))
-                    throw new JsonException("Missing $type property in polymorphic JSON.");
-
-                var typeName = typeProperty.GetString();
-                if (typeName is null)
-                    throw new JsonException("Invalid $type value in polymorphic JSON.");
-
-                var actualType = Type.GetType(typeName);
-                if (actualType is null)
-                    throw new JsonException($"Unable to resolve type '{typeName}'.");
-
-                var dataProperty = root.GetProperty(DataPropertyName);
-                var json = dataProperty.GetRawText();
-
-                return JsonSerializer.Deserialize(json, actualType, options);
-            }
-
-            public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
-            {
-                writer.WriteStartObject();
-                writer.WriteString(TypePropertyName, value.GetType().AssemblyQualifiedName);
-                writer.WritePropertyName(DataPropertyName);
-                JsonSerializer.Serialize(writer, value, value.GetType(), options);
-                writer.WriteEndObject();
-            }
         }
     }
 }
