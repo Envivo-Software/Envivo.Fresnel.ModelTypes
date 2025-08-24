@@ -38,7 +38,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
     /// </summary>
     /// <typeparam name="TAggregateRoot"></typeparam>
     public interface IAggregateReference<TAggregateRoot> : IAggregateReference
-    where TAggregateRoot : class, IAggregateRoot
+        where TAggregateRoot : class, IAggregateRoot
     {
 
         /// <summary>
@@ -46,6 +46,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// </summary>
         /// <param name="aggregateRepository">The repository containing the Aggregate</param>
         /// <returns></returns>
+        [Obsolete($"Use ResolveAsync<T>() instead")]
         Task<TAggregateRoot> ToAggregateAsync(IRepository<TAggregateRoot> aggregateRepository)
         {
             return aggregateRepository.LoadAsync(AggregateId);
