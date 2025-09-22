@@ -98,6 +98,12 @@ namespace Envivo.Fresnel.ModelTypes
 
         private void Save(TAggregateRoot aggregateRoot)
         {
+            var persistable = aggregateRoot as IPersistable;
+            if (persistable != null)
+            {
+                persistable.Version += 1;
+            }
+
             _Items[aggregateRoot.Id] = CreateJsonEntry(aggregateRoot);
         }
 
