@@ -27,6 +27,8 @@ namespace Envivo.Fresnel.ModelTypes
         public InMemoryRepository(IEnumerable<TAggregateRoot> initialItems, IJsonObjectSerializer jsonObjectSerializer = null)
             : this(jsonObjectSerializer)
         {
+            initialItems = initialItems ?? Array.Empty<TAggregateRoot>();
+
             var hasMissingIds = initialItems.Any(i => i.Id == Guid.Empty);
             var hasDuplicateIds = initialItems.GroupBy(i => i.Id).Any(grp => grp.Count() > 1);
 
@@ -67,7 +69,7 @@ namespace Envivo.Fresnel.ModelTypes
         public async Task<int> SaveAsync(TAggregateRoot aggregateRoot, IEnumerable<object> newObjects, IEnumerable<object> modifiedObjects, IEnumerable<object> deletedObjects)
         {
             var newAggregates =
-                newObjects
+                (newObjects ?? new List<object>())
                 .OfType<TAggregateRoot>()
                 .ToList();
             newAggregates.Add(aggregateRoot);
@@ -77,7 +79,7 @@ namespace Envivo.Fresnel.ModelTypes
             }
 
             var modifiedAggregates =
-                modifiedObjects
+                (modifiedObjects ?? new List<object>())
                 .OfType<TAggregateRoot>()
                 .ToList();
             foreach (var ar in modifiedAggregates)
