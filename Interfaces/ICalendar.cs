@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 using System;
 using System.Collections.Generic;
-using Envivo.Fresnel.ModelTypes.Interfaces;
 
 namespace Envivo.Fresnel.ModelTypes.Interfaces
 {

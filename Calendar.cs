@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Envivo.Fresnel.ModelTypes.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Envivo.Fresnel.ModelTypes.Interfaces;
 
 namespace Envivo.Fresnel.ModelTypes
 {

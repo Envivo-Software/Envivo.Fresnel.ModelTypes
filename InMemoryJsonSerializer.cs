@@ -1,13 +1,13 @@
 ﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2025 Envivo Software
 // SPDX-License-Identifier: Apache-2.0
+using Envivo.Fresnel.ModelTypes.Interfaces;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Envivo.Fresnel.ModelTypes.Interfaces;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Envivo.Fresnel.ModelTypes
 {
