@@ -1,3 +1,22 @@
+2026-01-10: v2.8.0
+
+⚠ Breaking changes
+- Updated to .NET 8
+
+🐞 Fixes:
+- InMemoryRepository<T>: Prevent null reference exceptions when arguments aren't provided
+- InMemoryRepository<T>.Save() now increment Version numbers
+
+🎁 New features:
+- Added IRepository.GetResultsAsync(expression, orderBy), to prevent IQueryable leakage (NB: this has a default implementation)
+- Added ICommandObjectSetup, to allow Command Objects to be pre-configured from a Domain Object
+- Added ICommandFunction, to support Commands that return values.
+- Added ICommandObjectAsync and ICommandFunctionAsync, to provide ExecuteAsync() methods 
+
+💨 Other:
+- Deprecated IRepository.GetQuery()
+
+==============================================================================
 2025-08-24: v2.7.0
 
 🎁 New features:
