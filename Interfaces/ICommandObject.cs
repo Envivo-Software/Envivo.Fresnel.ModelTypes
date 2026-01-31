@@ -110,7 +110,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         Task<TResult> ExecuteAsync(CancellationToken cancellationToken);
     }
 
-    public interface ICommandFunctioAsync<TContext, TResult> : ICommandObjectBase
+    public interface ICommandFunctionAsync<TContext, TResult> : ICommandObjectBase
     where TContext : class
     where TResult : class
     {
@@ -118,7 +118,7 @@ namespace Envivo.Fresnel.ModelTypes.Interfaces
         /// Executes the command asynchronously using the given parameter, and returns a result 
         /// </summary>
         /// <returns></returns>
-        Task<TResult> Execute(TContext context, CancellationToken cancellationToken);
+        Task<TResult> ExecuteAsync(TContext context, CancellationToken cancellationToken);
     }
 
     #endregion
