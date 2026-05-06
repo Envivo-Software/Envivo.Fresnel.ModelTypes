@@ -1,0 +1,20 @@
+﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2026 Envivo Software
+// SPDX-License-Identifier: Apache-2.0
+using Envivo.Fresnel.ModelTypes.Structural;
+using System;
+
+namespace Envivo.Fresnel.ModelTypes.Persistence.Classes
+{
+    /// <inheritdoc cref="IAggregateLock" />
+    public class AggregateLock : IAggregateLock
+    {
+        /// <inheritdoc/>
+        public IAggregateReference<IAggregateRoot> AggregateReference { get; set; }
+
+        /// <inheritdoc/>
+        public string LockedBy { get; set; }
+
+        /// <inheritdoc/>
+        public DateTimeOffset LockedUntil { get; set; }
+    }
+}

@@ -5,20 +5,33 @@ Fresnel ModelTypes is a .NET library containing Interfaces and Classes for build
 This library is designed for use with the [**Fresnel Domain Model Explorer**](https://github.com/Envivo-Software/Envivo.Fresnel) prototyping and modelling tool,
 but may be used independently to create your own DDD class models.
 
-You can find usage examples in the following projects:
-- [Fresnel.Sample.ShoppingProject](https://github.com/Envivo-Software/Fresnel.Sample.ShoppingProject)
+You can find usage examples in the following project:
 - [Fresnel.Sample.Features](https://github.com/Envivo-Software/Fresnel.Sample.Features)
 
 ## Namespaces
 
-### Envivo.Fresnel.ModelTypes
+### Envivo.Fresnel.ModelTypes.Structural
+Defines structural elements including base classes for entities, value objects, aggregates, and collections.
 
-These are mostly abstract base classes, and can be a good starting point if you don't want the hassle of implementing interfaces from scratch.
+### Envivo.Fresnel.ModelTypes.Rules
+Includes validation and specification interfaces and base classes for business rules.
 
-Objects and Collections are designed to raise notifications, which could be handy if you are binding objects directly to views.
+### Envivo.Fresnel.ModelTypes.Commands
+Contains command-related interfaces and base classes for handling domain commands.
 
-### Envivo.Fresnel.ModelTypes.Interfaces
+### Envivo.Fresnel.ModelTypes.Services
+Contains service interfaces and base classes for domain services and application services.
 
-If you're restricting from using base classes in your code model (or prefer hand-crafting your own)	, consider using the interfaces within this namespace.
+### Envivo.Fresnel.ModelTypes.Persistence
+Contains persistence-related interfaces like repositories and query specifications.
+
+### Envivo.Fresnel.ModelTypes.Temporal
+Provides temporal domain elements like audit trails and calendars.
+
+### Envivo.Fresnel.ModelTypes.Visuals
+Defines visual elements like chart data interfaces.
+
+### Envivo.Fresnel.ModelTypes.Infrastructure
+Provides infrastructure components like JSON serialization and model space interfaces.
 
 *Copyright 2022-2026 Envivo Software*
