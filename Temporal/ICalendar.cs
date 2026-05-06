@@ -22,7 +22,7 @@ namespace Envivo.Fresnel.ModelTypes.Temporal
         /// <param name="rangeStart"></param>
         /// <param name="rangeEnd"></param>
         /// <returns></returns>
-        public IEnumerable<ICalendarEntry> GetEntries(DateTime rangeStart, DateTime rangeEnd);
+        public IEnumerable<ICalendarEntry> GetEntries(DateTimeOffset rangeStart, DateTimeOffset rangeEnd);
 
         /// <summary>
         /// An entry within a calendar

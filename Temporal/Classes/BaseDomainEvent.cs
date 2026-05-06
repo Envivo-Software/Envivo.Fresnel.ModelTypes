@@ -10,7 +10,7 @@ namespace Envivo.Fresnel.ModelTypes.Temporal.Classes
     public abstract partial class BaseDomainEvent : BaseDomainObject, IDomainEvent
     {
         /// <inheritdoc/>
-        public virtual DateTime OccurredAt { get; set; }
+        public virtual DateTimeOffset OccurredAt { get; set; }
 
         public override bool Equals(object obj)
         {

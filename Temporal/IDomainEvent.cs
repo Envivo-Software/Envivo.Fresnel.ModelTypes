@@ -21,6 +21,6 @@ namespace Envivo.Fresnel.ModelTypes.Temporal
         /// <summary>
         /// The date/time when the Domain Event occurred
         /// </summary>
-        DateTime OccurredAt { get; }
+        DateTimeOffset OccurredAt { get; }
     }
 }

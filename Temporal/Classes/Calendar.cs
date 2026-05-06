@@ -16,7 +16,7 @@ namespace Envivo.Fresnel.ModelTypes.Temporal.Classes
         public ICollection<CalendarEntry> Entries { get; set; } = new List<CalendarEntry>();
 
         /// <inheritdoc/>
-        public IEnumerable<ICalendar.ICalendarEntry> GetEntries(DateTime rangeStart, DateTime rangeEnd)
+        public IEnumerable<ICalendar.ICalendarEntry> GetEntries(DateTimeOffset rangeStart, DateTimeOffset rangeEnd)
         {
             return
                 Entries

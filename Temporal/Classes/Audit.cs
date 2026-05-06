@@ -19,18 +19,18 @@ namespace Envivo.Fresnel.ModelTypes.Temporal.Classes
         public virtual string CreatedBy { get; set; }
 
         /// <inheritdoc/>
-        public virtual DateTime? CreatedAt { get; set; }
+        public virtual DateTimeOffset? CreatedAt { get; set; }
 
         /// <inheritdoc/>
         public virtual string UpdatedBy { get; set; }
 
         /// <inheritdoc/>
-        public virtual DateTime? UpdatedAt { get; set; }
+        public virtual DateTimeOffset? UpdatedAt { get; set; }
 
         /// <inheritdoc/>
         public virtual string DeletedBy { get; set; }
 
         /// <inheritdoc/>
-        public virtual DateTime? DeletedAt { get; set; }
+        public virtual DateTimeOffset? DeletedAt { get; set; }
     }
 }

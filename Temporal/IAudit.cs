@@ -23,7 +23,7 @@ namespace Envivo.Fresnel.ModelTypes.Temporal
         /// <summary>
         /// The date/time the associated object was created
         /// </summary>
-        DateTime? CreatedAt { get; set; }
+        DateTimeOffset? CreatedAt { get; set; }
 
         /// <summary>
         /// The user that updated the associated object (if an update took place)
@@ -33,7 +33,7 @@ namespace Envivo.Fresnel.ModelTypes.Temporal
         /// <summary>
         /// The date/time the associated object was updated (if an update took place)
         /// </summary>
-        DateTime? UpdatedAt { get; set; }
+        DateTimeOffset? UpdatedAt { get; set; }
 
         /// <summary>
         /// The user that deleted the associated object (if a delete took place)
@@ -43,6 +43,6 @@ namespace Envivo.Fresnel.ModelTypes.Temporal
         /// <summary>
         /// The date/time the associated object was deleted (if a delete took place)
         /// </summary>
-        DateTime? DeletedAt { get; set; }
+        DateTimeOffset? DeletedAt { get; set; }
     }
 }
