@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 using System;
 using System.ComponentModel;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Commands
 {
@@ -42,71 +40,4 @@ namespace Envivo.Fresnel.ModelTypes.Commands
         /// <returns></returns>
         void Execute(TContext context);
     }
-
-    public interface ICommandFunction<out TResult> : ICommandObjectBase
-    where TResult : class
-    {
-        /// <summary>
-        /// Executes the command and returns a result 
-        /// </summary>
-        /// <returns></returns>
-        TResult Execute();
-    }
-
-    public interface ICommandFunction<TContext, TResult> : ICommandObjectBase
-    where TContext : class
-    where TResult : class
-    {
-        /// <summary>
-        /// Executes the command using the given parameter, and returns a result 
-        /// </summary>
-        /// <returns></returns>
-        TResult Execute(TContext context);
-    }
-
-    #region Async options
-
-    /// <inheritdoc/>
-    public interface ICommandObjectAsync : ICommandObjectBase
-    {
-        /// <summary>
-        /// Executes the command asynchronously
-        /// </summary>
-        /// <returns></returns>
-        Task ExecuteAsync(CancellationToken cancellationToken);
-    }
-
-    /// <inheritdoc/>
-    public interface ICommandObjectAsync<TContext> : ICommandObjectBase
-        where TContext : class
-    {
-        /// <summary>
-        /// Executes the command asynchronously using the given parameter
-        /// </summary>
-        /// <returns></returns>
-        Task ExecuteAsync(TContext context, CancellationToken cancellationToken);
-    }
-
-    public interface ICommandFunctionAsync<TResult> : ICommandObjectBase
-    where TResult : class
-    {
-        /// <summary>
-        /// Executes the command asynchronously and returns a result 
-        /// </summary>
-        /// <returns></returns>
-        Task<TResult> ExecuteAsync(CancellationToken cancellationToken);
-    }
-
-    public interface ICommandFunctionAsync<TContext, TResult> : ICommandObjectBase
-    where TContext : class
-    where TResult : class
-    {
-        /// <summary>
-        /// Executes the command asynchronously using the given parameter, and returns a result 
-        /// </summary>
-        /// <returns></returns>
-        Task<TResult> ExecuteAsync(TContext context, CancellationToken cancellationToken);
-    }
-
-    #endregion
 }
