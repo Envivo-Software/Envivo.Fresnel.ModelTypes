@@ -13,10 +13,10 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
 {
     /// <inheritdoc cref="IDomainObject" />
     [Serializable]
-    public abstract partial class BaseDomainObject : IDomainObject,
-                                                     INotifyPropertyChanged,
-                                                     IValidatable,
-                                                     IDisposable
+    public abstract class BaseDomainObject : IDomainObject,
+                                            INotifyPropertyChanged,
+                                            IValidatable,
+                                            IDisposable
     {
         public override bool Equals(object obj)
         {

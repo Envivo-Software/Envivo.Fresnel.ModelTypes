@@ -7,7 +7,7 @@ using System;
 namespace Envivo.Fresnel.ModelTypes.Temporal.Classes
 {
     /// <inheritdoc cref="IDomainEvent" />
-    public abstract partial class BaseDomainEvent : BaseDomainObject, IDomainEvent
+    public abstract class BaseDomainEvent : BaseDomainObject, IDomainEvent
     {
         /// <inheritdoc/>
         public virtual DateTimeOffset OccurredAt { get; set; }

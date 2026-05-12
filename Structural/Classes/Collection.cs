@@ -11,7 +11,7 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
     /// <summary>
     /// A collection of Domain Objects
     /// </summary>
-    public partial class Collection<T> : IList<T>,
+    public class Collection<T> : IList<T>,
                                          IListAdapter<T>,
                                          INotifyCollectionChanges<T>,
                                          INotifyCollectionChanged,

@@ -3,7 +3,7 @@
 namespace Envivo.Fresnel.ModelTypes.Structural.Classes
 {
     /// <inheritdoc cref="IEntity" />
-    public abstract partial class BaseEntity : BaseDomainObject, IEntity
+    public abstract class BaseEntity : BaseDomainObject, IEntity
     {
         public override bool Equals(object obj)
         {

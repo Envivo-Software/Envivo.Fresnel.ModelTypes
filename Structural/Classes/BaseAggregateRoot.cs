@@ -3,7 +3,7 @@
 namespace Envivo.Fresnel.ModelTypes.Structural.Classes
 {
     /// <inheritdoc cref="IAggregateRoot" />
-    public abstract partial class BaseAggregateRoot : BaseDomainObject, IAggregateRoot
+    public abstract class BaseAggregateRoot : BaseDomainObject, IAggregateRoot
     {
        
     }
