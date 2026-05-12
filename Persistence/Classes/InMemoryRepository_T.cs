@@ -6,6 +6,7 @@ using Envivo.Fresnel.ModelTypes.Structural;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Persistence.Classes
@@ -45,14 +46,18 @@ namespace Envivo.Fresnel.ModelTypes.Persistence.Classes
             }
         }
 
-        /// <inheritdoc/>
-        public IQueryable<TAggregateRoot> GetQuery()
+        public Task<QueryResult<TAggregateRoot>> GetResultsAsync
+        (
+            QueryFilter<TAggregateRoot> queryFilter,
+            CancellationToken cancellationToken = default)
         {
-            return
+            var queryable = 
                 _Items.Values
                 .Select(entry => Deserialise(entry))
                 .Where(e => e != null)
                 .AsQueryable();
+
+            return queryable.GetResultsAsync(queryFilter, cancellationToken);
         }
 
         /// <inheritdoc/>

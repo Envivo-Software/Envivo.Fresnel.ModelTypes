@@ -4,8 +4,6 @@ using Envivo.Fresnel.ModelTypes.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,62 +21,12 @@ namespace Envivo.Fresnel.ModelTypes.Persistence
         where TObject : class
     {
         /// <summary>
-        /// Returns a queryable of the Objects for this repository. This query is extended at run-time, prior to the results being materialised.
+        /// Returns the matches for the given query expression and ordering.
         /// </summary>
-        /// <returns>An IQueryable from the underlying database provider</returns>
-        [Obsolete("Use GetResultsAsync() instead, which does not leak IQueryable into domain code")]
-        IQueryable<TObject> GetQuery();
-
-        /// <summary>
-        /// Returns the Object matches for the given query expression and ordering.
-        /// </summary>
-        /// <param name="where">The Where filter expression</param>
-        /// <param name="orderBys">Optiona: OrderBy expressions</param>
-        /// <param name="toListAsync">Optional: The action to materialise the list</param>
+        /// <param name="queryFilter">The query filter details</param>
         /// <param name="cancellationToken"></param>
         /// <returns>The list of matches from the underlying database provider</returns>
-        async Task<IEnumerable<TObject>> GetResultsAsync(
-            Expression<Func<TObject, bool>> where,
-            (Expression<Func<TObject, object>> key, bool asc)[] orderBys = null,
-            Func<IQueryable<TObject>, CancellationToken, Task<IEnumerable<TObject>>> toListAsync = null,
-            CancellationToken cancellationToken = default)
-        {
-            ArgumentNullException.ThrowIfNull(where);
-
-#pragma warning disable CS0618 // Type or member is obsolete
-            // This is acceptable, as we're not leaking the IQueryable into consumer code:
-            var query = GetQuery();
-#pragma warning restore CS0618 // Type or member is obsolete
-
-            if (where != null)
-            {
-                query = query.Where(where);
-            }
-
-            if (orderBys.Length > 0)
-            {
-                var ordered = orderBys[0].asc
-                    ? query.OrderBy(orderBys[0].key)
-                    : query.OrderByDescending(orderBys[0].key);
-
-                for (int i = 1; i < orderBys.Length; i++)
-                {
-                    ordered = orderBys[i].asc
-                        ? ordered.ThenBy(orderBys[i].key)
-                        : ordered.ThenByDescending(orderBys[i].key);
-                }
-
-                query = ordered;
-            }
-
-            if (toListAsync != null)
-            {
-                return await toListAsync(query, cancellationToken);
-            }
-
-            // Default to synchronous:
-            return query.ToList();
-        }
+        Task<QueryResult<TObject>> GetResultsAsync(QueryFilter<TObject> queryFilter, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Loads and returns the Object matching the given Id
