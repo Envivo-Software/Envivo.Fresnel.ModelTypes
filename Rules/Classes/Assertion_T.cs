@@ -5,8 +5,17 @@ using System.ComponentModel;
 
 namespace Envivo.Fresnel.ModelTypes.Rules.Classes
 {
+    /// <summary>
+    /// Represents the result of a generic rule assertion, extending <see cref="Assertion"/> with a typed result value.
+    /// </summary>
+    /// <typeparam name="T">The type of the result value associated with this assertion.</typeparam>
     public class Assertion<T> : Assertion
     {
+        /// <summary>
+        /// Creates an <see cref="Assertion{T}"/> that has passed with the specified result value.
+        /// </summary>
+        /// <param name="result">The result value of type T.</param>
+        /// <returns>An <see cref="Assertion{T}"/> indicating success with the provided result.</returns>
         public static new Assertion<T> Pass(T result)
         {
             var actionResult = new Assertion<T>()
@@ -17,6 +26,8 @@ namespace Envivo.Fresnel.ModelTypes.Rules.Classes
             return actionResult;
         }
 
+        /// <inheritdoc cref="Assertion.PassWithWarning(WarningException)" />
+        /// <param name="result">The result value of type T.</param>
         public static Assertion<T> PassWithWarning(T result, WarningException warning)
         {
             return new Assertion<T>()
@@ -26,6 +37,8 @@ namespace Envivo.Fresnel.ModelTypes.Rules.Classes
             };
         }
 
+        /// <inheritdoc cref="Assertion.Fail(Exception)" />
+        /// <param name="result">The result value of type T.</param>
         public static Assertion<T> Fail(T result, Exception failure)
         {
             if (failure == null)
@@ -38,6 +51,8 @@ namespace Envivo.Fresnel.ModelTypes.Rules.Classes
             };
         }
 
+        /// <inheritdoc cref="Assertion.FailWithWarning(Exception, WarningException)" />
+        /// <param name="result">The result value of type T.</param>
         public static Assertion<T> FailWithWarning(T result, Exception failure, WarningException warning)
         {
             if (failure == null)

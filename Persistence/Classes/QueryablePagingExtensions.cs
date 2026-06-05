@@ -11,13 +11,13 @@ namespace Envivo.Fresnel.ModelTypes.Persistence.Classes
     public static class QueryablePagingExtensions
     {
         /// <summary>
-        /// Applies the given filter
+        /// Applies the given filter, including Where clauses, ordering, and paging, then returns the resulting <see cref="QueryResult{T}"/>.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="query"></param>
-        /// <param name="queryFilter"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The type of the query items.</typeparam>
+        /// <param name="query">The source query to apply filters to.</param>
+        /// <param name="queryFilter">The filter containing Where clauses, OrderBy specifications, and paging information.</param>
+        /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+        /// <returns>A <see cref="QueryResult{T}"/> containing the filtered, ordered, and paged results.</returns>
         public static async Task<QueryResult<T>> GetResultsAsync<T>(
             this IQueryable<T> query,
             QueryFilter<T> queryFilter,
