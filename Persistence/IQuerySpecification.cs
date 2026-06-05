@@ -3,6 +3,7 @@
 using Envivo.Fresnel.ModelTypes.Services;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Persistence
@@ -20,7 +21,7 @@ namespace Envivo.Fresnel.ModelTypes.Persistence
         /// <summary>
         /// Returns a set of results
         /// </summary>
-        Task<IEnumerable<TResult>> GetResultsAsync();
+        Task<IEnumerable<TResult>> GetResultsAsync(CancellationToken cancellationToken = default);
     }
 
     /// <inheritdoc/>
@@ -30,6 +31,6 @@ namespace Envivo.Fresnel.ModelTypes.Persistence
         /// <summary>
         /// Returns a set of results
         /// </summary>
-        Task<IEnumerable<TResult>> GetResultsAsync(TRequestor requestor);
+        Task<IEnumerable<TResult>> GetResultsAsync(TRequestor requestor, CancellationToken cancellationToken = default);
     }
 }
