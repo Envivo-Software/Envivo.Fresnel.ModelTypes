@@ -22,7 +22,7 @@ namespace Envivo.Fresnel.ModelTypes.Visuals.Classes
         // <inheritdoc/>
         public string YAxisLabel { get; set; }
 
-        public IChartData.IDataSeries[] Series { get; set; } = Array.Empty<IChartData.IDataSeries>();
+        public IChartData.IDataSeries[] Series { get; set; } = [];
 
 
         /// <inheritdoc cref="IChartData.IDataSeries" />
@@ -38,7 +38,7 @@ namespace Envivo.Fresnel.ModelTypes.Visuals.Classes
             public string HexColour { get; set; }
 
             // <inheritdoc/>
-            public IChartData.IDataPoint[] Points { get; set; } = Array.Empty<IChartData.IDataPoint>();
+            public IChartData.IDataPoint[] Points { get; set; } = [];
         }
 
         /// <inheritdoc cref="IChartData.IDataPoint" />
