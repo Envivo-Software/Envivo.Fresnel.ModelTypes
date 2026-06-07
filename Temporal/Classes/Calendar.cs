@@ -8,7 +8,7 @@ namespace Envivo.Fresnel.ModelTypes.Temporal.Classes
     public class Calendar : ICalendar
     {
         /// <inheritdoc/>
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         /// <inheritdoc/>
         public string Title { get; set; }
@@ -29,7 +29,7 @@ namespace Envivo.Fresnel.ModelTypes.Temporal.Classes
         public class CalendarEntry : ICalendar.ICalendarEntry
         {
             /// <inheritdoc/>
-            public Guid Id { get; set; }
+            public Guid Id { get; init; }
 
             /// <inheritdoc/>
             public DateTime EntryDate { get; set; }

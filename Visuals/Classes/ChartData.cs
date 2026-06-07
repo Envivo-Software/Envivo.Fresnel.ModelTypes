@@ -8,7 +8,7 @@ namespace Envivo.Fresnel.ModelTypes.Visuals.Classes
     public class ChartData : IChartData
     {
         // <inheritdoc/>
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         // <inheritdoc/>
         public string ChartType { get; set; }
