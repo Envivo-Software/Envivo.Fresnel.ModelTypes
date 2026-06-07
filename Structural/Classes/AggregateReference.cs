@@ -13,29 +13,35 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
         /// </summary>
         /// <param name="aggregateRoot">The Aggregate being referenced</param>
         /// <returns></returns>
-        public static AggregateReference From(IAggregateRoot aggregateRoot)
+        public static AggregateReference From(IAggregateRoot aggregateRoot) => new(aggregateRoot);
+
+        /// <summary>
+        /// Constructor for Serialization/ORM
+        /// </summary>
+        public AggregateReference() { }
+
+        /// <summary>
+        /// Constructor for Serialization/ORM
+        /// </summary>
+        public AggregateReference(IAggregateRoot aggregateRoot)
         {
-            var type = aggregateRoot.GetType();
-            return new AggregateReference
-            {
-                Id = Guid.NewGuid(),
-                AggregateId = aggregateRoot.Id,
-                TypeName = type.FullName,
-                Description = $"{type.Name}: {aggregateRoot}"
-            };
+            Id = Guid.NewGuid();
+            TypeName = aggregateRoot.GetType().FullName;
+            AggregateId = aggregateRoot.Id;
+            Description = $"{aggregateRoot.GetType().Name}: {aggregateRoot}";
         }
 
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         /// <inheritdoc/>
-        public string TypeName { get; set; }
+        public string TypeName { get; init; }
 
         /// <inheritdoc/>
-        public Guid AggregateId { get; set; }
+        public Guid AggregateId { get; init; }
 
         /// <inheritdoc/>
-        public string Description { get; set; }
+        public string Description { get; init; }
 
         public override string ToString()
         {

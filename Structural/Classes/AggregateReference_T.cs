@@ -1,7 +1,5 @@
 ﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2026 Envivo Software
 // SPDX-License-Identifier: Apache-2.0
-using System;
-
 namespace Envivo.Fresnel.ModelTypes.Structural.Classes
 {
     /// <inheritdoc cref="IAggregateReference{TAggregateRoot}" />
@@ -13,17 +11,16 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
         /// </summary>
         /// <param name="aggregateRoot">The Aggregate being referenced</param>
         /// <returns></returns>
-        public static new AggregateReference<TAggregateRoot> From(IAggregateRoot aggregateRoot)
-        {
-            var type = aggregateRoot.GetType();
-            return new AggregateReference<TAggregateRoot>
-            {
-                Id = Guid.NewGuid(),
-                AggregateId = aggregateRoot.Id,
-                TypeName = type.FullName,
-                Description = $"{type.Name}: {aggregateRoot}"
-            };
-        }
+        public static AggregateReference<TAggregateRoot> From(TAggregateRoot aggregateRoot) => new(aggregateRoot);
+
+        /// <summary>
+        /// Constructor for Serialization/ORM
+        /// </summary>
+        public AggregateReference() { }
+
+        public AggregateReference(TAggregateRoot aggregateRoot)
+            : base(aggregateRoot)
+        { }
 
         public override string ToString()
         {

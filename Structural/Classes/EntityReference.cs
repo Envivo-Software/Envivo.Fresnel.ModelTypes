@@ -9,20 +9,27 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
     public record EntityReference : IEntityReference
     {
         /// <summary>
-        /// Returns an EntityReference for the given Entity, using ToString() as the Description
+        /// Returns an EntityReference for the given Entity, using ToString() as the Description.
+        /// Use this instead of the constructor.
         /// </summary>
         /// <param name="entity">The entity being referenced</param>
         /// <returns></returns>
-        public static EntityReference From(IEntity entity)
+        public static EntityReference From(IEntity entity) => new(entity);
+
+        /// <summary>
+        /// Constructor for Serialization/ORM
+        /// </summary>
+        public EntityReference() { }
+
+        /// <summary>
+        /// Constructor for Serialization/ORM
+        /// </summary>
+        public EntityReference(IEntity entity)
         {
-            var type = entity.GetType();
-            return new EntityReference
-            {
-                Id = Guid.NewGuid(),
-                EntityId = entity.Id,
-                TypeName = type.FullName,
-                Description = $"{type.Name}: {entity}"
-            };
+            Id = Guid.NewGuid();
+            TypeName = entity.GetType().FullName;
+            EntityId = entity.Id;
+            Description = $"{entity.GetType().Name}: {entity}";
         }
 
         [Key]

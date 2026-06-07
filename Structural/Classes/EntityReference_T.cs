@@ -1,7 +1,5 @@
 ﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2026 Envivo Software
 // SPDX-License-Identifier: Apache-2.0
-using System;
-
 namespace Envivo.Fresnel.ModelTypes.Structural.Classes
 {
     /// <inheritdoc cref="IEntityReference{TEntity}" />
@@ -9,21 +7,21 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
         where TEntity : class, IEntity
     {
         /// <summary>
-        /// Returns an EntityReference for the given Entity, using ToString() as the Description
+        /// Returns an EntityReference for the given Entity, using ToString() as the Description.
+        /// Use this instead of the constructor.
         /// </summary>
         /// <param name="entity">The entity being referenced</param>
         /// <returns></returns>
-        public static EntityReference<TEntity> From(TEntity entity)
-        {
-            var type = entity.GetType();
-            return new EntityReference<TEntity>
-            {
-                Id = Guid.NewGuid(),
-                EntityId = entity.Id,
-                TypeName = type.FullName,
-                Description = $"{type.Name}: {entity}"
-            };
-        }
+        public static EntityReference<TEntity> From(TEntity entity) => new(entity);
+
+        /// <summary>
+        /// Constructor for Serialization/ORM
+        /// </summary>
+        public EntityReference() { }
+
+        public EntityReference(TEntity entity)
+            : base(entity)
+        { }
 
         public override string ToString()
         {
