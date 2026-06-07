@@ -11,7 +11,7 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
         /// <summary>
         /// Returns an AggregateReference for the given Aggregate root, using ToString() as the Description
         /// </summary>
-        /// <param name="aggregateRoot"></param>
+        /// <param name="aggregateRoot">The Aggregate being referenced</param>
         /// <returns></returns>
         public static new AggregateReference<TAggregateRoot> From(IAggregateRoot aggregateRoot)
         {
