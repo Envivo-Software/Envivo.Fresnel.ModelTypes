@@ -10,27 +10,27 @@ namespace Envivo.Fresnel.ModelTypes.Temporal.Classes
     {
         /// <inheritdoc/>
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         /// <inheritdoc/>
-        public virtual Guid ParentObjectId { get; set; }
+        public virtual Guid ParentObjectId { get; init; }
 
         /// <inheritdoc/>
-        public virtual string CreatedBy { get; set; }
+        public virtual string CreatedBy { get; init; }
 
         /// <inheritdoc/>
-        public virtual DateTimeOffset? CreatedAt { get; set; }
+        public virtual DateTimeOffset? CreatedAt { get; init; }
 
         /// <inheritdoc/>
-        public virtual string UpdatedBy { get; set; }
+        public virtual string UpdatedBy { get; init; }
 
         /// <inheritdoc/>
-        public virtual DateTimeOffset? UpdatedAt { get; set; }
+        public virtual DateTimeOffset? UpdatedAt { get; init; }
 
         /// <inheritdoc/>
-        public virtual string DeletedBy { get; set; }
+        public virtual string DeletedBy { get; init; }
 
         /// <inheritdoc/>
-        public virtual DateTimeOffset? DeletedAt { get; set; }
+        public virtual DateTimeOffset? DeletedAt { get; init; }
     }
 }
