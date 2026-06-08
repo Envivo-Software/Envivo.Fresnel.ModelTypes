@@ -10,6 +10,7 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
     {
         /// <summary>
         /// Returns an AggregateReference for the given Aggregate root, using ToString() as the Description
+        /// Use this instead of the constructor.
         /// </summary>
         /// <param name="aggregateRoot">The Aggregate being referenced</param>
         /// <returns></returns>
@@ -21,8 +22,10 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
         public AggregateReference() { }
 
         /// <summary>
-        /// Constructor for Serialization/ORM
+        /// Returns an AggregateReference for the given Aggregate root, using ToString() as the Description
         /// </summary>
+        /// <param name="aggregateRoot">The Aggregate being referenced</param>
+        /// <returns></returns>
         public AggregateReference(IAggregateRoot aggregateRoot)
         {
             Id = Guid.NewGuid();

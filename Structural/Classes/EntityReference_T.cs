@@ -19,6 +19,11 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
         /// </summary>
         public EntityReference() { }
 
+        /// <summary>
+        /// Returns an EntityReference for the given Entity, using ToString() as the Description.
+        /// </summary>
+        /// <param name="entity">The entity being referenced</param>
+        /// <returns></returns>
         public EntityReference(TEntity entity)
             : base(entity)
         { }

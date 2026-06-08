@@ -22,8 +22,10 @@ namespace Envivo.Fresnel.ModelTypes.Structural.Classes
         public EntityReference() { }
 
         /// <summary>
-        /// Constructor for Serialization/ORM
+        /// Returns an EntityReference for the given Entity, using ToString() as the Description.
         /// </summary>
+        /// <param name="entity">The entity being referenced</param>
+        /// <returns></returns>
         public EntityReference(IEntity entity)
         {
             Id = Guid.NewGuid();
