@@ -15,14 +15,14 @@ namespace Envivo.Fresnel.ModelTypes.Infrastructure.Classes
     /// </summary>
     public sealed class InMemoryJsonSerializer : IJsonObjectSerializer
     {
-        private readonly JsonSerializerSettings _settings;
+        private readonly JsonSerializerSettings _Settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InMemoryJsonSerializer"/> class.
         /// </summary>
         public InMemoryJsonSerializer()
         {
-            _settings = new JsonSerializerSettings
+            _Settings = new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented,
 
@@ -46,7 +46,7 @@ namespace Envivo.Fresnel.ModelTypes.Infrastructure.Classes
         /// <returns>The deserialized object.</returns>
         public object Deserialize(string json, Type type)
         {
-            return JsonConvert.DeserializeObject(json, _settings);
+            return JsonConvert.DeserializeObject(json, type, _Settings);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Envivo.Fresnel.ModelTypes.Infrastructure.Classes
         /// <returns>The deserialized object of type T.</returns>
         public T Deserialize<T>(string json) where T : class
         {
-            return JsonConvert.DeserializeObject<T>(json, _settings);
+            return JsonConvert.DeserializeObject<T>(json, _Settings);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Envivo.Fresnel.ModelTypes.Infrastructure.Classes
         /// <returns>A JSON string representation of the object.</returns>
         public string Serialize<T>(T obj) where T : class
         {
-            return JsonConvert.SerializeObject(obj, _settings);
+            return JsonConvert.SerializeObject(obj, _Settings);
         }
 
         /// <summary>
