@@ -14,16 +14,24 @@ namespace Envivo.Fresnel.ModelTypes.Persistence
             TotalPages = totalPages;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// The requested page number
+        /// </summary>
         public int PageNumber { get; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// The requested page size
+        /// </summary>
         public int PageSize { get; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// The total possible number of items that match
+        /// </summary>
         public int TotalItems { get; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// The total possible pages of results
+        /// </summary>
         public int TotalPages { get; }
     }
 
@@ -35,7 +43,9 @@ namespace Envivo.Fresnel.ModelTypes.Persistence
             Items = items;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// The items returned
+        /// </summary>
         public IEnumerable<TObject> Items { get; init; }
     }
 }

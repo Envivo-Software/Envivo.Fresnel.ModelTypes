@@ -21,9 +21,10 @@ namespace Envivo.Fresnel.ModelTypes.Temporal.ProcessFlow
         IAudit Audit { get; }
 
         /// <summary>
-        /// The friendly name for this stage.
+        /// The friendly name for this process.
         /// </summary>
         string Name { get; }
+
         /// <summary>
         /// A human-readable description of this process, used for identification.
         /// </summary>

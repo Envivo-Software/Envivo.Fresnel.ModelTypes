@@ -1,9 +1,7 @@
 ﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2026 Envivo Software
 // SPDX-License-Identifier: Apache-2.0
-using Envivo.Fresnel.ModelTypes.Persistence;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Structural
 {

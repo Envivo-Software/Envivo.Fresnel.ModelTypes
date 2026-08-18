@@ -7,19 +7,19 @@ namespace Envivo.Fresnel.ModelTypes.Visuals.Classes
     /// <inheritdoc cref="IChartData" />
     public class ChartData : IChartData
     {
-        // <inheritdoc/>
+        /// <inheritdoc/>
         public Guid Id { get; init; }
 
-        // <inheritdoc/>
+        /// <inheritdoc/>
         public string ChartType { get; set; }
 
-        // <inheritdoc/>
+        /// <inheritdoc/>
         public string Title { get; set; }
 
-        // <inheritdoc/>
+        /// <inheritdoc/>
         public string XAxisLabel { get; set; }
 
-        // <inheritdoc/>
+        /// <inheritdoc/>
         public string YAxisLabel { get; set; }
 
         public IChartData.IDataSeries[] Series { get; set; } = [];

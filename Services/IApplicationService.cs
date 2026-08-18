@@ -4,7 +4,7 @@ namespace Envivo.Fresnel.ModelTypes.Services
 {
     /// <summary>
     /// A set of stateless async operations used to orchestrate with external resources (e.g. Web Services, databases).
-    /// Application Services should not contain domain logic. They should provide the informtion needed by the core domain.
+    /// Application Services should not contain domain logic. They should provide the information needed by the core domain.
     /// </summary>
     public interface IApplicationService : IDomainDependency
     {
