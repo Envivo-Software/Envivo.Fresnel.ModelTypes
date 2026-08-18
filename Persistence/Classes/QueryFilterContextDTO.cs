@@ -7,7 +7,7 @@ namespace Envivo.Fresnel.ModelTypes.Persistence.Classes
     /// <summary>
     /// The context within which a QueryFilter is executed
     /// </summary>
-    /// /// <remarks>
+    /// <remarks>
     /// This is designed to be serialisable, hence the primitive types
     /// </remarks>
     public record QueryFilterContextDTO
