@@ -3,10 +3,16 @@
 namespace Envivo.Fresnel.ModelTypes.Services
 {
     /// <summary>
-    /// A set of stateless operations, whose behaviours cannot be contained within any Domain Object.
-    /// Domain Services should not be confused with Application/Web Services, or Infrastructure services.
+    /// A set of stateless async operations, whose behaviours cannot be contained within any Domain Object.
     /// </summary>
     public interface IDomainService : IDomainDependency
+    {
+    }
+
+    /// <summary>
+    /// A set of stateless async operations for a specific Domain Object.
+    /// </summary>
+    public interface IDomainService<T> : IDomainService
     {
     }
 }
