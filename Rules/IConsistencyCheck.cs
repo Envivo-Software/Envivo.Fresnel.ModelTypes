@@ -15,9 +15,10 @@ namespace Envivo.Fresnel.ModelTypes.Rules
     /// Applies checks against a Domain object, to ensure it is fit for persisting
     /// </summary>
     public interface IConsistencyCheck<T> : IConsistencyCheck
+        where T : class
     {
         /// <summary>
-        /// Determines if the given Domain Object if fit for persisting
+        /// Determines if the given Domain Object is fit for persisting
         /// </summary>
         /// <param name="obj"></param>
         Assertion Check(T obj);

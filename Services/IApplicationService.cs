@@ -14,6 +14,7 @@ namespace Envivo.Fresnel.ModelTypes.Services
     /// A set of stateless async operations for a specific Domain Object.
     /// </summary>
     public interface IApplicationService<T> : IApplicationService
+        where T : class
     {
     }
 }
