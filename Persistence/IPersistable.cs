@@ -13,7 +13,7 @@ namespace Envivo.Fresnel.ModelTypes.Persistence
         /// <summary>
         /// The unique identifier for this Entity. Typically marked with [KeyAttribute].
         /// </summary>
-        Guid Id { get; init; }
+        Guid Id { get; }
 
         /// <summary>
         /// Used for concurrency checks. Typically marked with [ConcurrencyCheckAttribute].

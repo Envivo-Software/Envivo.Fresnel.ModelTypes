@@ -13,6 +13,6 @@ namespace Envivo.Fresnel.ModelTypes.Structural
         /// <summary>
         /// The unique identifier for this ValueObject
         /// </summary>
-        Guid Id { get; init; }
+        Guid Id { get; }
     }
 }
