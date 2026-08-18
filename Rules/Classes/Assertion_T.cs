@@ -33,7 +33,8 @@ namespace Envivo.Fresnel.ModelTypes.Rules.Classes
             return new Assertion<T>()
             {
                 HasPassed = true,
-                Warning = warning
+                Warning = warning,
+                Result = result,
             };
         }
 
@@ -47,7 +48,8 @@ namespace Envivo.Fresnel.ModelTypes.Rules.Classes
             return new Assertion<T>()
             {
                 HasFailed = true,
-                FailureException = failure
+                FailureException = failure,
+                Result = result,
             };
         }
 
@@ -62,7 +64,8 @@ namespace Envivo.Fresnel.ModelTypes.Rules.Classes
             {
                 HasFailed = true,
                 FailureException = failure,
-                Warning = warning
+                Warning = warning,
+                Result = result,
             };
         }
 
