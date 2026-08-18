@@ -12,7 +12,7 @@ namespace Envivo.Fresnel.ModelTypes.Rules.Classes
     /// </summary>
     public class Assertion
     {
-        private static Assertion _Pass = new Assertion() { HasPassed = true };
+        private static readonly Assertion _Pass = new() { HasPassed = true };
 
         /// <summary>
         /// Gets a singleton <see cref="Assertion"/> that indicates a successful assertion with no result value.
