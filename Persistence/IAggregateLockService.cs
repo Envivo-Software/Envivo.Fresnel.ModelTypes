@@ -1,4 +1,6 @@
-﻿using Envivo.Fresnel.ModelTypes.Services;
+﻿// SPDX-FileCopyrightText: Copyright (c) 2022-2026 Envivo Software
+// SPDX-License-Identifier: Apache-2.0
+using Envivo.Fresnel.ModelTypes.Services;
 using System.Threading.Tasks;
 
 namespace Envivo.Fresnel.ModelTypes.Persistence
